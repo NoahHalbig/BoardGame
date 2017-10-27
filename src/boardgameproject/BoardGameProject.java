@@ -4,7 +4,7 @@ public class BoardGameProject {
    
     public static void main(String[] args) {
         
-       
+    int k = 34;   
        
        
     }
