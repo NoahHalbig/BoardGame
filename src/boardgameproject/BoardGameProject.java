@@ -4,7 +4,8 @@ public class BoardGameProject {
    
     public static void main(String[] args) {
         
-    int k = 34;   
+    boolean masonIsTerribleAtProgramming = true; 
+       boolean masonIsAlsoBadAtGitHub = true;
        
        
     }
