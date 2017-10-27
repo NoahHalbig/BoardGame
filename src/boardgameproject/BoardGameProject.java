@@ -10,10 +10,3 @@ public class BoardGameProject {
     }
     
 }
-public class Noah
-{
-   Noah()
-   {
-      int noah = 3214;
-   }   
-}   
