@@ -1,6 +1,5 @@
 package boardgameproject;
 
-//still some problems with the shifting thing, if shifint on other players turn = a inw, other player wins = wrong
 import java.io.*;
 import java.awt.*;
 import java.awt.geom.*;
@@ -13,11 +12,6 @@ public class BoardGameProject extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
-
-    static boolean gameOver;
-    static int mostRecentRow;
-    static int mostRecentCol;
-    boolean theTruth = false;
 
 
     public static void main(String[] args) {
@@ -77,24 +71,12 @@ public class BoardGameProject extends JFrame implements Runnable {
         start();
     }
     Thread relaxer;
-    public static void ChangeMostrecentRow(int changer){
-        mostRecentRow = changer;
-    }
-    public static void ChangeMostrecentColumn(int changer){
-        mostRecentCol = changer;
-    }
-    public static  void setGameOver(boolean changer){
-        gameOver = changer;
-    }
 ////////////////////////////////////////////////////////////////////////////
     public void init() {
         requestFocus();
     }
 ////////////////////////////////////////////////////////////////////////////
     public void destroy() {
-    }
-    static public boolean getGameOver(){
-        return gameOver;
     }
 ////////////////////////////////////////////////////////////////////////////
     public void paint(Graphics gOld) {
