@@ -107,7 +107,7 @@ public class BoardGameProject extends JFrame implements Runnable {
             return;
         }
         
-        
+        Dice dice = new Dice();
                
         gOld.drawImage(image, 0, 0, null);
     }
