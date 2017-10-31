@@ -1,6 +1,6 @@
 package boardgameproject;
 
 
-public class Tile {
-   
+public class Player {
+    
 }
