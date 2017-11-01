@@ -1,5 +1,6 @@
 package boardgameproject;
 
-public class Building {
+
+public class SpecialCards {
     
 }

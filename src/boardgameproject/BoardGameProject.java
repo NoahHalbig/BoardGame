@@ -12,6 +12,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     boolean animateFirstTime = true;
     Image image;
     Graphics2D g;
+    static int NUM_RESOURCE_TYPES = 5;
 
 
     public static void main(String[] args) {
