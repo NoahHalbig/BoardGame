@@ -20,6 +20,34 @@ public class BoardGameProject extends JFrame implements Runnable {
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        
+        Tile tile1 = new Tile(Tile.tileType.Sheep);
+        Tile tile2 = new Tile(Tile.tileType.Sheep);
+        Tile tile3 = new Tile(Tile.tileType.Sheep);
+        Tile tile4 = new Tile(Tile.tileType.Sheep);
+        Tile tile5 = new Tile(Tile.tileType.Wheat);
+        Tile tile6 = new Tile(Tile.tileType.Wheat);
+        Tile tile7 = new Tile(Tile.tileType.Wheat);
+        Tile tile8 = new Tile(Tile.tileType.Wheat);
+        Tile tile9 = new Tile(Tile.tileType.Brick);
+        Tile tile10 = new Tile(Tile.tileType.Brick);
+        Tile tile11 = new Tile(Tile.tileType.Brick);
+        Tile tile12 = new Tile(Tile.tileType.Desert);
+        Tile tile13 = new Tile(Tile.tileType.Wood);
+        Tile tile14 = new Tile(Tile.tileType.Wood);
+        Tile tile15 = new Tile(Tile.tileType.Wood);
+        Tile tile16 = new Tile(Tile.tileType.Ore);
+        Tile tile17 = new Tile(Tile.tileType.Ore);
+        Tile tile18 = new Tile(Tile.tileType.Ore);
+        Tile tile19 = new Tile(Tile.tileType.Wood);
+        Tile tile20 = new Tile(Tile.tileType.Gold);
+        
+        
+        
+        
+        
+        
+        
     }
 
     public BoardGameProject() {
@@ -107,6 +135,9 @@ public class BoardGameProject extends JFrame implements Runnable {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
+        
+        Board.drawBoard(g);
+        
         
         Dice dice = new Dice();
                
