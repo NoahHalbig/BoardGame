@@ -32,7 +32,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
    
                 if (e.BUTTON1 == e.getButton() ) {
-                    System.out.println("Help Me");
+                    Dice.setRandomNum();
                         
                     
                 }
@@ -113,10 +113,9 @@ public class BoardGameProject extends JFrame implements Runnable {
         }
         
         Board.drawBoard(g);
+        Dice.drawDice(g);
         
-        
-        
-//        Dice dice = new Dice();
+      
                
         gOld.drawImage(image, 0, 0, null);
     }
