@@ -3,10 +3,10 @@ package boardgameproject;
 
 
 public class Window {
-    static final int XBORDER = 40;
-    static final int YBORDER = 40;
+    static final int XBORDER = 150;
+    static final int YBORDER = 150;
     static final int YTITLE = 25;
-    static final int WINDOW_WIDTH = 840;
+    static final int WINDOW_WIDTH = 1200;
     static final int WINDOW_HEIGHT = 865;    
     
     static int xsize = -1;

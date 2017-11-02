@@ -30,16 +30,20 @@ public class Board {
             g.drawLine(Window.getX(zi*xdelta),Window.getY(0),
                     Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
         }
+        for (int zi = 0;zi<NUM_ROWS;zi++)
+            for (int xi = 0;xi<NUM_COLUMNS;xi++)
+            {   
+                if(hexBoard[zi][xi] != null)
+                    hexBoard[zi][xi].drawTile(zi, xi, g);     
+            }
     }
     public static void randomAssignment(Tile thisTile){
         boolean keepLooping = true;
-        for(;keepLooping;)
-        {   int row = (int) Math.random() * NUM_ROWS;
-            int column = (int) Math.random() * NUM_COLUMNS;
+        while(keepLooping)
+        {   int row = (int) (Math.random() * NUM_ROWS);
+            int column = (int) (Math.random() * NUM_COLUMNS);
             if(hexBoard[row][column] == null)
             {    hexBoard[row][column] = thisTile;
-                thisTile.changeRow(row);
-                thisTile.changeColumn(column);
                 keepLooping = false;}
         }
     }

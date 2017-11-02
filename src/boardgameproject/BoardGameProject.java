@@ -11,7 +11,7 @@ public class BoardGameProject extends JFrame implements Runnable {
 
     boolean animateFirstTime = true;
     Image image;
-    Graphics2D g;
+    static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
 
 
@@ -21,32 +21,8 @@ public class BoardGameProject extends JFrame implements Runnable {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         
-        Tile tile1 = new Tile(Tile.tileType.Sheep);
-        Tile tile2 = new Tile(Tile.tileType.Sheep);
-        Tile tile3 = new Tile(Tile.tileType.Sheep);
-        Tile tile4 = new Tile(Tile.tileType.Sheep);
-        Tile tile5 = new Tile(Tile.tileType.Wheat);
-        Tile tile6 = new Tile(Tile.tileType.Wheat);
-        Tile tile7 = new Tile(Tile.tileType.Wheat);
-        Tile tile8 = new Tile(Tile.tileType.Wheat);
-        Tile tile9 = new Tile(Tile.tileType.Brick);
-        Tile tile10 = new Tile(Tile.tileType.Brick);
-        Tile tile11 = new Tile(Tile.tileType.Brick);
-        Tile tile12 = new Tile(Tile.tileType.Desert);
-        Tile tile13 = new Tile(Tile.tileType.Wood);
-        Tile tile14 = new Tile(Tile.tileType.Wood);
-        Tile tile15 = new Tile(Tile.tileType.Wood);
-        Tile tile16 = new Tile(Tile.tileType.Ore);
-        Tile tile17 = new Tile(Tile.tileType.Ore);
-        Tile tile18 = new Tile(Tile.tileType.Ore);
-        Tile tile19 = new Tile(Tile.tileType.Wood);
-        Tile tile20 = new Tile(Tile.tileType.Gold);
         
-        
-        
-        
-        
-        
+ 
         
     }
 
@@ -56,13 +32,13 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
    
                 if (e.BUTTON1 == e.getButton() ) {
-                    
+                    System.out.println("Help Me");
                         
                     
                 }
 
                 if (e.BUTTON3 == e.getButton()) {
-                    reset();
+                    
                 }
                 repaint();
             }
@@ -139,7 +115,8 @@ public class BoardGameProject extends JFrame implements Runnable {
         Board.drawBoard(g);
         
         
-        Dice dice = new Dice();
+        
+//        Dice dice = new Dice();
                
         gOld.drawImage(image, 0, 0, null);
     }
@@ -160,6 +137,10 @@ public class BoardGameProject extends JFrame implements Runnable {
     }
 /////////////////////////////////////////////////////////////////////////
     public void reset() {
+        for(int i = 0; i < 20; i++)
+        {    Tile tempTile = (Tile) Tile.getTiles().get(i);
+            tempTile.doRandomAssignment();
+            }
         
         
     }
@@ -171,9 +152,35 @@ public class BoardGameProject extends JFrame implements Runnable {
             if (Window.xsize != getSize().width || Window.ysize != getSize().height) {
                 Window.xsize = getSize().width;
                 Window.ysize = getSize().height;
+                
+        Tile tile1 = new Tile(Tile.tileType.Sheep, g);
+        Tile tile2 = new Tile(Tile.tileType.Sheep, g);
+        Tile tile3 = new Tile(Tile.tileType.Sheep,g );
+        Tile tile4 = new Tile(Tile.tileType.Sheep, g);
+        Tile tile5 = new Tile(Tile.tileType.Wheat, g);
+        Tile tile6 = new Tile(Tile.tileType.Wheat, g);
+        Tile tile7 = new Tile(Tile.tileType.Wheat, g);
+        Tile tile8 = new Tile(Tile.tileType.Wheat, g);
+        Tile tile9 = new Tile(Tile.tileType.Brick, g);
+        Tile tile10 = new Tile(Tile.tileType.Brick, g);
+        Tile tile11 = new Tile(Tile.tileType.Brick, g);
+        Tile tile12 = new Tile(Tile.tileType.Desert, g);
+        Tile tile13 = new Tile(Tile.tileType.Wood, g);
+        Tile tile14 = new Tile(Tile.tileType.Wood, g);
+        Tile tile15 = new Tile(Tile.tileType.Wood, g);
+        Tile tile16 = new Tile(Tile.tileType.Ore, g);
+        Tile tile17 = new Tile(Tile.tileType.Ore, g);
+        Tile tile18 = new Tile(Tile.tileType.Ore, g);
+        Tile tile19 = new Tile(Tile.tileType.Wood, g);
+        Tile tile20 = new Tile(Tile.tileType.Gold, g);
+        for(int i = 0; i < 20; i++)
+        {    Tile tempTile = (Tile) Tile.getTiles().get(i);
+            tempTile.doRandomAssignment();
             }
-
-            reset();
+        }
+            
+        
+        reset();
 
         }
 
