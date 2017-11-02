@@ -177,6 +177,7 @@ public class BoardGameProject extends JFrame implements Runnable {
         {    Tile tempTile = (Tile) Tile.getTiles().get(i);
             tempTile.doRandomAssignment();
             }
+        
         }
             
         

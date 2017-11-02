@@ -23,12 +23,15 @@ public class Board {
         {
             g.drawLine(Window.getX(0),Window.getY(zi*ydelta),
                     Window.getX(Window.getWidth2()),Window.getY(zi*ydelta));
+            
+            
         }
         
         for (int zi = 1;zi<NUM_COLUMNS;zi++)
         {
             g.drawLine(Window.getX(zi*xdelta),Window.getY(0),
                     Window.getX(zi*xdelta),Window.getY(Window.getHeight2()));
+            
         }
         for (int zi = 0;zi<NUM_ROWS;zi++)
             for (int xi = 0;xi<NUM_COLUMNS;xi++)
