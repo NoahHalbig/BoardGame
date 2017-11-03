@@ -49,7 +49,8 @@ public class Tile {
         g.fillRect(Window.getX(0)+column*Window.getWidth2()/Board.NUM_COLUMNS, Window.getY(0)+row*Window.getHeight2()/Board.NUM_ROWS, Window.getWidth2()/Board.NUM_COLUMNS, Window.getHeight2()/Board.NUM_ROWS);
         g.setFont(new Font("Arial",Font.BOLD,20));
         g.setColor(Color.BLACK);
-        g.drawString("" + value, Window.getX(0)+column*(Window.getWidth2()/Board.NUM_COLUMNS) + Window.getWidth2()/Board.NUM_COLUMNS/2, Window.getY(0)+row*(Window.getHeight2()/Board.NUM_ROWS) + Window.getHeight2()/Board.NUM_ROWS/2);
+        if(thisTileType != tileType.Desert)
+            g.drawString("" + value, Window.getX(0)+column*(Window.getWidth2()/Board.NUM_COLUMNS) + Window.getWidth2()/Board.NUM_COLUMNS/2, Window.getY(0)+row*(Window.getHeight2()/Board.NUM_ROWS) + Window.getHeight2()/Board.NUM_ROWS/2);
         if(robberOnTile)
             g.drawOval(Window.getX(0)+column*Window.getWidth2()/Board.NUM_COLUMNS, Window.getY(0)+row*Window.getHeight2()/Board.NUM_ROWS, Window.getWidth2()/Board.NUM_COLUMNS/4, Window.getHeight2()/Board.NUM_ROWS/4);
         

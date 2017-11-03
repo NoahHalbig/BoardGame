@@ -1,6 +1,6 @@
 package boardgameproject;
 
 
-public class Roads {
+public class Roads extends Building{
     
 }

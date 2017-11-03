@@ -53,6 +53,13 @@ public class Board {
     public static Tile[][] getHexBoard(){
         return hexBoard;
     }
+    public static void drawPhaseOne(Graphics2D g){
+        
+        
+        
+        
+        
+    }
     
     
     

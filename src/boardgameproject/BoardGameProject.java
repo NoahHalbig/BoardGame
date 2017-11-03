@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.geom.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.net.*;
+import java.awt.image.BufferedImage;
 
 public class BoardGameProject extends JFrame implements Runnable {
 
@@ -13,6 +15,20 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
+    int phaseOfGame = 0;
+    
+    
+    final int portNumber = 5657;
+    public static boolean gameStarted = false;
+    public static boolean myTurn;
+    public static int serverValue = 0;
+    public static int clientValue = 0;
+    
+    String host = new String();
+ 
+    public static boolean isConnecting = false;
+    public static boolean isClient;
+    Thread relaxer;
 
 
     public static void main(String[] args) {
@@ -20,7 +36,8 @@ public class BoardGameProject extends JFrame implements Runnable {
         frame.setSize(Window.WINDOW_WIDTH, Window.WINDOW_HEIGHT);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        
+        frame.setTitle("Network");
+        frame.setResizable(false);
         
  
         
@@ -69,13 +86,172 @@ public class BoardGameProject extends JFrame implements Runnable {
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
+                if (e.getKeyCode() == KeyEvent.VK_1 && gameStarted)
+                {
+                    if (isClient)
+                    {
+                        System.out.println("sending from client");
+                        clientValue++;
+
+                    }
+                    else
+                    {
+                        System.out.println("sending from server");
+                        serverValue++;
+
+                    }			                    
+                }  
+                else if (e.getKeyCode() == KeyEvent.VK_2 && gameStarted)
+                {
+                    if (isClient)
+                    {
+                        System.out.println("sending from client");
+                        clientValue+=2;
+                            
+                    }
+                    else
+                    {
+                        System.out.println("sending from server");
+                        serverValue+=2;
+                            
+                    }	
+			                    
+                }                        
+                else if (e.getKeyCode() == KeyEvent.VK_S)
+                {
+                    if (!isConnecting)
+                    {                    
+                        try {     
+
+                            isConnecting = true;
+                            System.out.println("is connecting true");
+                            ServerHandler.recieveConnect(portNumber);   //5657
+                            System.out.println("after recieveConnect");
+                            if (ServerHandler.connected)
+                            {
+                                isClient = false;
+                                myTurn = false;
+                                gameStarted = true;
+                                isConnecting = false;
+                            }                        
+                        }
+                        catch (IOException ex)
+                        {
+                            System.out.println("Cannot host server: " + ex.getMessage());
+                            isConnecting = false;
+                        }  
+                     
+                    }
+
+                }
+                else if (e.getKeyCode() == KeyEvent.VK_C)
+                {
+                    if (!isConnecting)
+                    {
+                    
+                            try
+                            {
+                   
+                                isConnecting = true;
+                                ClientHandler.connect(host, portNumber);
+                                if (ClientHandler.connected)
+                                {
+                                    isClient = true;
+                                    myTurn = true;
+                                    gameStarted = true;
+                                    isConnecting = false;
+                                }
+                            }
+                            catch (IOException ex)
+                            {
+                                System.out.println("Cannot join server: " + ex.getMessage());
+                                isConnecting = false;
+                            }                    
+                    }
+                    
+                }                
+                else
+                {
+                    if (!gameStarted)
+                    {
+                        if (e.getKeyCode() == KeyEvent.VK_0)
+                        {
+                            host += "0";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_1)
+                        {
+                            host += "1";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_2)
+                        {
+                            host += "2";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_3)
+                        {
+                            host += "3";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_4)
+                        {
+                            host += "4";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_5)
+                        {
+                            host += "5";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_6)
+                        {
+                            host += "6";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_7)
+                        {
+                            host += "7";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_8)
+                        {
+                            host += "8";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_9)
+                        {
+                            host += "9";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_PERIOD)
+                        {
+                            host += ".";
+                        }
+                        else if (e.getKeyCode() == KeyEvent.VK_BACK_SPACE && host.length() > 0)
+                        {
+                            host=host.substring(0, host.length()-1);
+                        }
+                    }
+                }
+                
+                if (gameStarted || isConnecting)
+                {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE && !isConnecting)
+                    {
+                        if (gameStarted)
+
+                            if (isClient)
+                            {
+                                ClientHandler.sendDisconnect();
+                                ClientHandler.disconnect();
+                            }
+                            else
+                            {
+                                ServerHandler.sendDisconnect();
+                                ServerHandler.disconnect();
+                            }
+                        gameStarted = false;
+                        reset();
+                    }
+                }                
                 repaint();
             }
         });
         init();
         start();
     }
-    Thread relaxer;
+    
 ////////////////////////////////////////////////////////////////////////////
     public void init() {
         requestFocus();
@@ -95,7 +271,7 @@ public class BoardGameProject extends JFrame implements Runnable {
         }
 //fill background
         
-        g.setColor(Color.black);
+        g.setColor(Color.BLUE);
         g.fillRect(0, 0, Window.xsize, Window.ysize);
 
         int x[] = {Window.getX(0), Window.getX(Window.getWidth2()), Window.getX(Window.getWidth2()), Window.getX(0), Window.getX(0)};
@@ -112,8 +288,56 @@ public class BoardGameProject extends JFrame implements Runnable {
             return;
         }
         
-        Board.drawBoard(g);
-        Dice.drawDice(g);
+        //Board.drawBoard(g);
+//        Dice.drawDice(g);
+if (!gameStarted)
+        {
+            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+            g.setColor(Color.black);
+            g.drawString("Not Connected",100,150);
+            
+        }
+        else if (isClient)
+        {
+            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+            g.setColor(Color.black);
+            g.drawString("The Client",100,150);
+        }
+        else
+        {
+            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+            g.setColor(Color.black);
+            g.drawString("The Server",100,150);
+        }            
+
+
+        {
+            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+            g.setColor(Color.black);
+            g.drawString("Client value " + clientValue,100,200);
+        }
+
+        {
+            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+            g.setColor(Color.black);
+            g.drawString("Server value " + serverValue,100,300);
+            
+        }
+        
+            try
+            {
+                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+                g.setColor(Color.black);
+                g.drawString("Your IP address: " + InetAddress.getLocalHost().getHostAddress(), Window.getX(10), Window.getY(20));
+                g.drawString("Enter IP address: " + host, Window.getX(10), Window.getY(60));
+            }
+            catch (UnknownHostException e)
+            {
+                e.printStackTrace();
+            }
+        if(phaseOfGame == 0)
+            Board.drawPhaseOne(g);
+            
         
       
                
@@ -135,7 +359,7 @@ public class BoardGameProject extends JFrame implements Runnable {
         }
     }
 /////////////////////////////////////////////////////////////////////////
-    public void reset() {
+    static public void reset() {
         for(int i = 0; i < 20; i++)
         {    Tile tempTile = (Tile) Tile.getTiles().get(i);
             tempTile.doRandomAssignment();
@@ -183,7 +407,12 @@ public class BoardGameProject extends JFrame implements Runnable {
         reset();
 
         }
-
+        
+        
+        
+        
+        
+        
         
         
         

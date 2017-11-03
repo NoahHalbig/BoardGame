@@ -18,7 +18,7 @@ public class Dice {
     public static void drawDice(Graphics2D g)
     {
         int dotSize = 20;
-        g.setColor(Color.WHITE);
+        g.setColor(Color.RED);
         g.fillRoundRect(0, Window.getY(Window.getHeight2()),Window.XBORDER, Window.YBORDER, 10, 10);
        
         
@@ -65,7 +65,7 @@ public class Dice {
             
         }
         
-        g.setColor(Color.WHITE);
+        g.setColor(Color.YELLOW);
         g.fillRoundRect(Window.getX(Window.getWidth2()), Window.getY(-Window.YBORDER), Window.XBORDER, Window.YBORDER, 10, 10);
        
         
