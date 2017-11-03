@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class Dice {
-    public static int num1 = setRandomNum();
-    Dice()
+    public static int num1 = (int)(Math.random()*6+1);
+    public static int num2 = (int)(Math.random()*6+1);
     {        
     }
     public static void drawDice(Graphics2D g)
@@ -25,43 +25,43 @@ public class Dice {
         g.setColor(Color.BLACK);
         if(num1 == 1)
         {     
-            g.fillOval(Window.getX(-75),Window.getY(605), dotSize, dotSize);   
+           g.fillOval(Window.getX(0) - Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);     
         }
         else if(num1 == 2)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);   
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize);  
         }
         else if(num1 == 3)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-75),Window.getY(605), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) - Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);     
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
         }
         else if(num1 == 4)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);   
-            g.fillOval(Window.getX(-45),Window.getY(655), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);   
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
         }
         else if(num1 == 5)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-75),Window.getY(605), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
-            g.fillOval(Window.getX(-45),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);   
             
         }
         else if(num1 == 6)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);   
-            g.fillOval(Window.getX(-45),Window.getY(605), dotSize, dotSize); 
-            g.fillOval(Window.getX(-45),Window.getY(655), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(605), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/2 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/2 - dotSize/2, dotSize, dotSize);  
             
         }
         
@@ -70,53 +70,52 @@ public class Dice {
        
         
         g.setColor(Color.BLACK);
-        
+        if(num2 == 1)
         {     
             g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/2 - dotSize/2, Window.getY(0) - Window.YBORDER/2 - dotSize/2, dotSize, dotSize);   
         }
-       if(num1 == 2)
+        else if(num2 == 2)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);   
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize);  
         }
-        else if(num1 == 3)
+        else if(num2 == 3)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-75),Window.getY(605), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/2 - dotSize/2, Window.getY(0) - Window.YBORDER/2 - dotSize/2, dotSize, dotSize);     
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize);    
         }
-        else if(num1 == 4)
-        {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);   
-            g.fillOval(Window.getX(-45),Window.getY(655), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);   
+        else if(num2 == 4)
+        {   g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
         }
-        else if(num1 == 5)
+        else if(num2 == 5)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-75),Window.getY(605), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
-            g.fillOval(Window.getX(-45),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/2 - dotSize/2, Window.getY(0) - Window.YBORDER/2 - dotSize/2, dotSize, dotSize);   
             
         }
-        else if(num1 == 6)
+        else if(num2 == 6)
         {     
-            g.fillOval(Window.getX(-45),Window.getY(555), dotSize, dotSize);   
-            g.fillOval(Window.getX(-45),Window.getY(605), dotSize, dotSize); 
-            g.fillOval(Window.getX(-45),Window.getY(655), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(555), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(605), dotSize, dotSize);  
-            g.fillOval(Window.getX(-105),Window.getY(655), dotSize, dotSize);  
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/2 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/2 - dotSize/2, dotSize, dotSize);   
             
         }
         
     }   
-    public static int setRandomNum()
+    public static void setRandomNum()
     {
         num1 = (int)(Math.random()*6+1);
-        return(num1);
+        num2 = (int) (Math.random()*6+1);
     }        
 }
     
