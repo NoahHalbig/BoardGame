@@ -80,7 +80,7 @@ public class ServerHandler
         }
     }
 
-    private static void recievePieceMove()
+    public static void recievePieceMove()
     {
         new Thread(new Runnable()
         {
@@ -134,4 +134,6 @@ public class ServerHandler
     {
         return connected;
     }
+
+    
 }

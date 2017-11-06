@@ -85,7 +85,7 @@ public class ClientHandler
 	}
 
 
-	private static void recievePieceMove()
+	public static void recievePieceMove()
 	{
 		new Thread(new Runnable() {
 

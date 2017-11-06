@@ -93,12 +93,14 @@ public class BoardGameProject extends JFrame implements Runnable {
                         System.out.println("sending from client");
                         clientValue++;
                         ClientHandler.sendPieceMove(clientValue);
+                        ClientHandler.recievePieceMove();
                     }
                     else
                     {
                         System.out.println("sending from server");
                         serverValue++;
                         ServerHandler.sendPieceMove(serverValue);
+                        ServerHandler.recievePieceMove();
                     }			                    
                 }  
                 else if (e.getKeyCode() == KeyEvent.VK_2 && gameStarted && myTurn)
@@ -108,13 +110,14 @@ public class BoardGameProject extends JFrame implements Runnable {
                         System.out.println("sending from client");
                         clientValue+=2;
                             ClientHandler.sendPieceMove(clientValue);
-                            ServerHandler.recievePieceMove();
+                            ClientHandler.recievePieceMove();
                     }
                     else
                     {
                         System.out.println("sending from server");
                         serverValue+=2;
                             ServerHandler.sendPieceMove(serverValue);
+                             ServerHandler.recievePieceMove();
                     }	
 			                    
                 }                        
