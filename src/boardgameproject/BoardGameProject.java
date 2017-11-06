@@ -108,6 +108,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                         System.out.println("sending from client");
                         clientValue+=2;
                             ClientHandler.sendPieceMove(clientValue);
+                            ServerHandler.recievePieceMove();
                     }
                     else
                     {
