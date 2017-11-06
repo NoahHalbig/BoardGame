@@ -61,14 +61,15 @@ public class ClientHandler
 		out = null;
 		br = null;
 		connected = false;
-		
+		BoardGameProject.gameStarted = false;
+		BoardGameProject.reset();
 	}
     public static void sendPieceMove(int val)
     {
 		if (connected)
 		{
-//add or modify.                    
-			
+//add or modify.  
+                        BoardGameProject.myTurn = false;
 		}        
     }
 
