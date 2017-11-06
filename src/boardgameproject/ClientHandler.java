@@ -68,7 +68,10 @@ public class ClientHandler
     {
 		if (connected)
 		{
-//add or modify.  
+//add or modify.       /
+                        out.println(-1 + ":" + val);
+			out.println(val + ":" + -1);
+                        out.flush(); 
                         BoardGameProject.myTurn = false;
 		}        
     }
