@@ -86,7 +86,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
-                if (e.getKeyCode() == KeyEvent.VK_1 && gameStarted)
+                if (e.getKeyCode() == KeyEvent.VK_1 && gameStarted && myTurn)
                 {
                     if (isClient)
                     {
@@ -101,7 +101,7 @@ public class BoardGameProject extends JFrame implements Runnable {
 
                     }			                    
                 }  
-                else if (e.getKeyCode() == KeyEvent.VK_2 && gameStarted)
+                else if (e.getKeyCode() == KeyEvent.VK_2 && gameStarted && myTurn)
                 {
                     if (isClient)
                     {
