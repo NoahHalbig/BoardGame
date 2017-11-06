@@ -111,13 +111,15 @@ public class BoardGameProject extends JFrame implements Runnable {
                         clientValue+=2;
                             ClientHandler.sendPieceMove(clientValue);
                             ClientHandler.recievePieceMove();
+                            
                     }
                     else
                     {
                         System.out.println("sending from server");
                         serverValue+=2;
                             ServerHandler.sendPieceMove(serverValue);
-                             ServerHandler.recievePieceMove();
+                            ServerHandler.recievePieceMove();
+                            
                     }	
 			                    
                 }                        
@@ -137,6 +139,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                                 myTurn = false;
                                 gameStarted = true;
                                 isConnecting = false;
+                                phaseOfGame = 1;
                             }                        
                         }
                         catch (IOException ex)
@@ -164,6 +167,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                                     myTurn = true;
                                     gameStarted = true;
                                     isConnecting = false;
+                                    phaseOfGame = 1;
                                 }
                             }
                             catch (IOException ex)
@@ -292,55 +296,14 @@ public class BoardGameProject extends JFrame implements Runnable {
             return;
         }
         
-        //Board.drawBoard(g);
-//        Dice.drawDice(g);
-if (!gameStarted)
-        {
-            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-            g.setColor(Color.black);
-            g.drawString("Not Connected",100,150);
-            
-        }
-        else if (isClient)
-        {
-            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-            g.setColor(Color.black);
-            g.drawString("The Client",100,150);
-        }
-        else
-        {
-            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-            g.setColor(Color.black);
-            g.drawString("The Server",100,150);
-        }            
-
-
-        {
-            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-            g.setColor(Color.black);
-            g.drawString("Client value " + clientValue,100,200);
-        }
-
-        {
-            g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-            g.setColor(Color.black);
-            g.drawString("Server value " + serverValue,100,300);
-            
-        }
         
-            try
-            {
-                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
-                g.setColor(Color.black);
-                g.drawString("Your IP address: " + InetAddress.getLocalHost().getHostAddress(), Window.getX(10), Window.getY(20));
-                g.drawString("Enter IP address: " + host, Window.getX(10), Window.getY(60));
-            }
-            catch (UnknownHostException e)
-            {
-                e.printStackTrace();
-            }
+        
+        
         if(phaseOfGame == 0)
-            Board.drawPhaseOne(g);
+            Board.drawPhaseOne(g, host);
+//        Board.drawBoard(g);
+        Dice.drawDice(g);
+        
             
         
       

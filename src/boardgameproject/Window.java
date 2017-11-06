@@ -30,4 +30,5 @@ public class Window {
     static public int getHeight2() {
         return (ysize - getY(0) - YBORDER);
     }
+    
 }
