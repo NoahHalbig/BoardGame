@@ -16,6 +16,7 @@ public class Board {
     final static int NUM_ROWS = 4;
     final static int NUM_COLUMNS = 5;  
     private static Tile hexBoard[][] = new Tile[NUM_ROWS][NUM_COLUMNS];
+
     
     Board(){
         
@@ -47,6 +48,9 @@ public class Board {
                 if(hexBoard[zi][xi] != null)
                     hexBoard[zi][xi].drawTile(zi, xi, g);     
             }
+        
+     
+        
     }
     public static void randomAssignment(Tile thisTile){
         boolean keepLooping = true;
@@ -105,6 +109,14 @@ public class Board {
         
         
     }
+    public static void showRoll(Graphics2D g)
+    {
+        g.setColor(Color.white);
+        g.fillRect(Window.getX(Window.getWidth2()-50), Window.getY(Window.getHeight2() + 50), Window.XBORDER, Window.YBORDER/2);
+        g.setColor(Color.black);
+        g.drawString("Roll Dice", Window.getX(Window.getWidth2()-15), Window.getY(Window.getHeight2() + 100));
+        
+    }        
     
     
     

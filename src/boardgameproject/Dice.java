@@ -13,8 +13,11 @@ import javax.swing.*;
 public class Dice {
     public static int num1 = (int)(Math.random()*6+1);
     public static int num2 = (int)(Math.random()*6+1);
-    {        
-    }
+    private boolean rollDice;
+    
+    Dice(){        
+        
+    } 
     public static void drawDice(Graphics2D g)
     {
         int dotSize = 20;
@@ -112,6 +115,16 @@ public class Dice {
         }
         
     }   
+    public void buttonPressed(MouseEvent e)
+    {
+        if(e.getX() > Window.getY(Window.getHeight2())&&
+            e.getX() > Window.getY(Window.getHeight2()) &&
+            e.getX() > Window.getY(Window.getHeight2()) &&
+            e.getX() > Window.getY(Window.getHeight2()))
+        {
+            rollDice = true;
+        }    
+    }        
     public static void setRandomNum()
     {
         num1 = (int)(Math.random()*6+1);
