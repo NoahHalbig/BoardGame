@@ -38,7 +38,7 @@ public class Dice {
         else if(num1 == 3)
         {     
             g.fillOval(Window.getX(0) - Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
-            g.fillOval(Window.getX(0) - Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);     
+            g.fillOval(Window.getX(0) - Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);      
             g.fillOval(Window.getX(0) - Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) + Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
         }
         else if(num1 == 4)
@@ -69,48 +69,48 @@ public class Dice {
         }
         
         g.setColor(Color.YELLOW);
-        g.fillRoundRect(Window.getX(Window.getWidth2()), Window.getY(-Window.YBORDER), Window.XBORDER, Window.YBORDER, 10, 10);
+        g.fillRoundRect(Window.getX(0), Window.getY(Window.getHeight2()), Window.XBORDER, Window.YBORDER, 10, 10);
        
-        
+
         g.setColor(Color.BLACK);
         if(num2 == 1)
         {     
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/2 - dotSize/2, Window.getY(0) - Window.YBORDER/2 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);   
         }
         else if(num2 == 2)
         {     
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize);  
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize);  
         }
         else if(num2 == 3)
         {     
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/2 - dotSize/2, Window.getY(0) - Window.YBORDER/2 - dotSize/2, dotSize, dotSize);     
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize);    
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);    
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize);    
         }
         else if(num2 == 4)
-        {   g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+        {   g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
         }
         else if(num2 == 5)
         {     
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/2 - dotSize/2, Window.getY(0) - Window.YBORDER/2 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+           g.fillOval(Window.getX(0) + Window.XBORDER/2 - dotSize/2, Window.getY(Window.getHeight2()) + Window.YBORDER/2 - dotSize/2, dotSize, dotSize);   
             
         }
         else if(num2 == 6)
         {     
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER/4 - dotSize/2, Window.getY(0) - Window.XBORDER/2 - dotSize/2, dotSize, dotSize);   
-            g.fillOval(Window.getX(Window.getWidth2()) + Window.XBORDER*3/4 - dotSize/2, Window.getY(0) - Window.XBORDER/2 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER*3/4 - dotSize/2, dotSize, dotSize); 
+            g.fillOval(Window.getX(0) + Window.XBORDER/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/2 - dotSize/2, dotSize, dotSize);   
+            g.fillOval(Window.getX(0) + Window.XBORDER*3/4 - dotSize/2, Window.getY(Window.getHeight2()) +Window.XBORDER/2 - dotSize/2, dotSize, dotSize);   
             
         }
         
@@ -119,8 +119,8 @@ public class Dice {
     {
         if(e.getX() > Window.getY(Window.getHeight2())&&
             e.getX() > Window.getY(Window.getHeight2()) &&
-            e.getX() > Window.getY(Window.getHeight2()) &&
-            e.getX() > Window.getY(Window.getHeight2()))
+            e.getY() > Window.getY(Window.getHeight2()) &&
+            e.getY() > Window.getY(Window.getHeight2()))
         {
             rollDice = true;
         }    
