@@ -15,7 +15,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
-    int phaseOfGame = 1;
+    int phaseOfGame = 0;
     private boolean showRoll = true;
     
     
@@ -50,27 +50,27 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
    
                 if (e.BUTTON1 == e.getButton() ) {
-                    int mouseXPos = e.getX();
-                    int mouseYPos = e.getY();
-                    if(Window.getX(mouseXPos) > Window.getX(Window.getX(0) + 40)&&
-                    Window.getX(mouseXPos) < Window.getX(Window.getWidth2() - 80) &&
-                    Window.getY(mouseYPos) > Window.getY(Window.getY(0) + 40) &&
-                    Window.getY(mouseYPos) < Window.getY(Window.getHeight2() + 135))
-                    {
-                        Dice.setRandomNum();
-                    }
-                    
                     if(phaseOfGame == 1)
-                        if(isClient && myTurn){
+                    {    int mouseXPos = e.getX();
+                        int mouseYPos = e.getY();
+                        if(Window.getX(mouseXPos) > Window.getX(Window.getX(0) + 40)&&
+                        Window.getX(mouseXPos) < Window.getX(Window.getWidth2() - 80) &&
+                        Window.getY(mouseYPos) > Window.getY(Window.getY(0) + 40) &&
+                        Window.getY(mouseYPos) < Window.getY(Window.getHeight2() + 135))
+                        {
+                           if(isClient && myTurn){
                             clientValue = Dice.getRandomNum();   
                             ClientHandler.recievePieceMove();
                             myTurn = false;
-                        }
-                        else if(myTurn){
+                            }
+                            else if(myTurn){
                             serverValue = Dice.getRandomNum(); 
                             ServerHandler.recievePieceMove();
                             myTurn = false;
+                            }
                         }
+                    }
+                        
                 
                     
                 }
