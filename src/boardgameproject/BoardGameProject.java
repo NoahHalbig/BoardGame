@@ -23,7 +23,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     public static boolean gameStarted = false;
     public static boolean myTurn;
     public static int serverValue = 0;
-    public static int clientValue = 7;
+    public static int clientValue = 0;
     
     String host = new String();
  
@@ -325,7 +325,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                 g.setColor(Color.BLACK);
                 g.drawString("" + clientValue, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
                  g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
-                g.drawString("Player One's Dice Roll", 0, Window.getY(0) - Window.YBORDER*3/4);
+                g.drawString("Client's Dice Roll", 0, Window.getY(0) - Window.YBORDER*3/4);
                 
             }
         }
