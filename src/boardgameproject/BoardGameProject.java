@@ -23,7 +23,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     public static boolean gameStarted = false;
     public static boolean myTurn;
     public static int serverValue = 0;
-    public static int clientValue = 0;
+    public static int clientValue = 7;
     
     String host = new String();
  
@@ -50,7 +50,17 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
    
                 if (e.BUTTON1 == e.getButton() ) {
-                    Dice.setRandomNum();
+                    if(phaseOfGame == 1)
+                        if(isClient && myTurn){
+                            clientValue = Dice.getRandomNum();   
+                            ClientHandler.recievePieceMove();
+                            myTurn = false;
+                        }
+                        else if(myTurn){
+                            serverValue = Dice.getRandomNum(); 
+                            ServerHandler.recievePieceMove();
+                            myTurn = false;
+                        }
                         
                     
                 }
@@ -303,12 +313,24 @@ public class BoardGameProject extends JFrame implements Runnable {
         
         if(phaseOfGame == 0)
             Board.drawPhaseOne(g, host);
-        if(phaseOfGame == 1)
-        {    
+        else if(phaseOfGame == 1){    
             Board.drawBoard(g);
             Dice.drawDice(g);
             if(showRoll)
-                Board.showRoll(g);
+                Board.showRoll(g);//need to add bounding box for thing
+            if(clientValue > 0){
+                g.setColor(Color.WHITE);
+                g.fillRect(0, Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
+                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+                g.setColor(Color.BLACK);
+                g.drawString("" + clientValue, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
+                g.drawString("Player One's Dice Roll", 0, Window.getY(0) - Window.YBORDER*3/4);
+                
+            }
+        }
+        else if(phaseOfGame ==2){
+            
         }
             
         

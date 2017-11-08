@@ -129,6 +129,13 @@ public class Dice {
     {
         num1 = (int)(Math.random()*6+1);
         num2 = (int) (Math.random()*6+1);
-    }        
+    }  
+    public static int getRandomNum()
+    {
+        num1 = (int)(Math.random()*6+1);
+        num2 = (int) (Math.random()*6+1);
+        return (num1 + num2);
+    } 
+     
 }
     
