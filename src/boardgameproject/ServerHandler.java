@@ -65,7 +65,7 @@ public class ServerHandler
 		if (connected)
 		{
 //add or modify.                    
-			pw.println(val + ":" + -1);
+			pw.println(val + ":" + 0);
                         pw.flush(); 
                         BoardGameProject.myTurn = false;
 		}            

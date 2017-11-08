@@ -59,14 +59,13 @@ public class BoardGameProject extends JFrame implements Runnable {
                         Window.getY(mouseYPos) < Window.getY(Window.getHeight2() + 135))
                         {
                            if(isClient && myTurn){
-                            clientValue = Dice.getRandomNum();   
-                            ClientHandler.recievePieceMove();
-                            myTurn = false;
+                                clientValue = Dice.getRandomNum();
+                                myTurn = false;
                             }
                             else if(myTurn){
-                            serverValue = Dice.getRandomNum(); 
-                            ServerHandler.recievePieceMove();
-                            myTurn = false;
+                                serverValue = Dice.getRandomNum(); 
+                                ServerHandler.sendPieceMove(serverValue);
+                                myTurn = false;
                             }
                         }
                     }
