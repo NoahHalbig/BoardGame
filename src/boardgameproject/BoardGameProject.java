@@ -307,7 +307,6 @@ public class BoardGameProject extends JFrame implements Runnable {
         {    
             Board.drawBoard(g);
             Dice.drawDice(g);
-            ResourceCards.draw(g, this);
             if(showRoll)
                 Board.showRoll(g);
         }

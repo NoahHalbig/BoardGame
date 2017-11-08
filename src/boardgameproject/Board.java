@@ -111,10 +111,11 @@ public class Board {
     }
     public static void showRoll(Graphics2D g)
     {
-        g.setColor(Color.white);
-        g.fillRect(Window.getX(Window.getWidth2()/2-75), Window.getY(Window.getHeight2() + 50), Window.XBORDER, Window.YBORDER/2);
-        g.setColor(Color.black);
-        g.drawString("Roll Dice", Window.getX(Window.getWidth2()/2-50), Window.getY(Window.getHeight2() + 100));
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect(Window.getX(0) + 40, Window.getY(0) + 40, Window.getWidth2() - 80, Window.getHeight2() - 80);
+        g.setColor(Color.LIGHT_GRAY);
+        g.setFont(new Font("Arial", Font.BOLD, 100));
+        g.drawString("Roll Dice", Window.getX(Window.getWidth2())/2 - 140, Window.getY(Window.getHeight2()/2));
         
     }        
     
