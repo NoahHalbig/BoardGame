@@ -50,6 +50,16 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
    
                 if (e.BUTTON1 == e.getButton() ) {
+                    int mouseXPos = e.getX();
+                    int mouseYPos = e.getY();
+                    if(Window.getX(mouseXPos) > Window.getX(Window.getX(0) + 40)&&
+                    Window.getX(mouseXPos) < Window.getX(Window.getWidth2() - 80) &&
+                    Window.getY(mouseYPos) > Window.getY(Window.getY(0) + 40) &&
+                    Window.getY(mouseYPos) < Window.getY(Window.getHeight2() + 135))
+                    {
+                        Dice.setRandomNum();
+                    }
+                    
                     if(phaseOfGame == 1)
                         if(isClient && myTurn){
                             clientValue = Dice.getRandomNum();   
@@ -61,7 +71,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                             ServerHandler.recievePieceMove();
                             myTurn = false;
                         }
-                        
+                
                     
                 }
 
