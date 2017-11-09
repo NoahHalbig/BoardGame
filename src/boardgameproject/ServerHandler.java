@@ -60,18 +60,22 @@ public class ServerHandler
     
     
     
-    public static void sendPieceMove(int val)
+    public static void sendPieceMove(String str)
     {
 		if (connected)
 		{
 //add or modify.                    
-			pw.println(val + ":" + 0);
+			pw.println(str);
                         pw.flush(); 
                         BoardGameProject.myTurn = false;
 		}            
     }
-
-
+    public static void sendBoard(){
+        
+    }
+    public static void sendDice(){
+        
+    }
     public static void sendDisconnect()
     {
         if (connected)
@@ -104,6 +108,8 @@ public class ServerHandler
 //add or modify.                            
                             int post0 = Integer.parseInt(inputLine.split(":")[0]);
                             int post1 = Integer.parseInt(inputLine.split(":")[1]);
+                            int numDice1 = Integer.parseInt(inputLine.split(":")[0]);
+                            int numDice2 = Integer.parseInt(inputLine.split(":")[1]);
                             BoardGameProject.clientValue=post0;
                             BoardGameProject.myTurn = true;
                         }

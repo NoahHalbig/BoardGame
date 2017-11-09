@@ -64,13 +64,12 @@ public class ClientHandler
 		BoardGameProject.gameStarted = false;
 		BoardGameProject.reset();
 	}
-    public static void sendPieceMove(int val)
+    public static void sendPieceMove(String masonForehead)
     {
 		if (connected)
 		{
 //add or modify.       /
-                        out.println(-1 + ":" + val);
-			out.println(val + ":" + -1);
+                        out.println(masonForehead);
                         out.flush(); 
                         BoardGameProject.myTurn = false;
 		}        
@@ -83,6 +82,9 @@ public class ClientHandler
 			out.println("esc");
 		}
 	}
+        public static void sendDice(){
+            
+        }
 
 
 	public static void recievePieceMove()
@@ -110,7 +112,7 @@ public class ClientHandler
 							int post0 = Integer.parseInt(inputLine.split(":")[0]);
 							int post1 = Integer.parseInt(inputLine.split(":")[1]);
                                                         
-                                                        BoardGameProject.serverValue=post0;
+                                                        BoardGameProject.serverValue = serverValue;
                                                         BoardGameProject.myTurn = true;
 						}
 						catch (NumberFormatException e)

@@ -130,12 +130,16 @@ public class Dice {
         num1 = (int)(Math.random()*6+1);
         num2 = (int) (Math.random()*6+1);
     }  
-    public static int getRandomNum()
+    public static String getRandomNum()
     {
         num1 = (int)(Math.random()*6+1);
         num2 = (int) (Math.random()*6+1);
-        return (num1 + num2);
+        
+        return ("" + num1 + ":" + num2);
     } 
+    public static String getNum(){
+        return ("" + num1 + ":" + num2);
+    }
      
 }
     

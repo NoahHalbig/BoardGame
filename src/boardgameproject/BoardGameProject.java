@@ -24,6 +24,8 @@ public class BoardGameProject extends JFrame implements Runnable {
     public static boolean myTurn;
     public static int serverValue = 0;
     public static int clientValue = 0;
+    public static String serverString = null;
+    public static String clientString = null;
     
     String host = new String();
  
@@ -59,13 +61,13 @@ public class BoardGameProject extends JFrame implements Runnable {
                         Window.getY(mouseYPos) < Window.getY(Window.getHeight2() + 135))
                         {
                            if(isClient && myTurn){
-                                clientValue = Dice.getRandomNum();
-                                ClientHandler.sendPieceMove(clientValue);
+                                clientString = Dice.getRandomNum();
+                                ClientHandler.sendPieceMove(clientString);
                                 myTurn = false;
                             }
                             else if(myTurn){
-                                serverValue = Dice.getRandomNum(); 
-                                ServerHandler.sendPieceMove(serverValue);
+                                serverString = Dice.getRandomNum(); 
+                                ServerHandler.sendPieceMove(serverString);
                                 myTurn = false;
                             }
                         }
@@ -107,43 +109,43 @@ public class BoardGameProject extends JFrame implements Runnable {
                 } else if (e.VK_ESCAPE == e.getKeyCode()) {
                     reset();
                 }
-                if (e.getKeyCode() == KeyEvent.VK_1 && gameStarted && myTurn)
-                {
-                    if (isClient)
-                    {
-                        System.out.println("sending from client");
-                        clientValue++;
-                        ClientHandler.sendPieceMove(clientValue);
-                        ClientHandler.recievePieceMove();
-                    }
-                    else
-                    {
-                        System.out.println("sending from server");
-                        serverValue++;
-                        ServerHandler.sendPieceMove(serverValue);
-                        ServerHandler.recievePieceMove();
-                    }			                    
-                }  
-                else if (e.getKeyCode() == KeyEvent.VK_2 && gameStarted && myTurn)
-                {
-                    if (isClient)
-                    {
-                        System.out.println("sending from client");
-                        clientValue+=2;
-                            ClientHandler.sendPieceMove(clientValue);
-                            ClientHandler.recievePieceMove();
-                            
-                    }
-                    else
-                    {
-                        System.out.println("sending from server");
-                        serverValue+=2;
-                            ServerHandler.sendPieceMove(serverValue);
-                            ServerHandler.recievePieceMove();
-                            
-                    }	
-			                    
-                }                        
+//                if (e.getKeyCode() == KeyEvent.VK_1 && gameStarted && myTurn)
+//                {
+//                    if (isClient)
+//                    {
+//                        System.out.println("sending from client");
+//                        clientValue++;
+//                        ClientHandler.sendPieceMove(clientValue);
+//                        ClientHandler.recievePieceMove();
+//                    }
+//                    else
+//                    {
+//                        System.out.println("sending from server");
+//                        serverValue++;
+//                        ServerHandler.sendPieceMove(serverValue);
+//                        ServerHandler.recievePieceMove();
+//                    }			                    
+//                }  
+//                else if (e.getKeyCode() == KeyEvent.VK_2 && gameStarted && myTurn)
+//                {
+//                    if (isClient)
+//                    {
+//                        System.out.println("sending from client");
+//                        clientValue+=2;
+//                            ClientHandler.sendPieceMove(clientValue);
+//                            ClientHandler.recievePieceMove();
+//                            
+//                    }
+//                    else
+//                    {
+//                        System.out.println("sending from server");
+//                        serverValue+=2;
+//                            ServerHandler.sendPieceMove(serverValue);
+//                            ServerHandler.recievePieceMove();
+//                            
+//                    }	
+//			                    
+//                }                        
                 else if (e.getKeyCode() == KeyEvent.VK_S)
                 {
                     if (!isConnecting)
@@ -323,7 +325,12 @@ public class BoardGameProject extends JFrame implements Runnable {
         
         if(phaseOfGame == 0)
             Board.drawPhaseOne(g, host);
-        else if(phaseOfGame == 1){    
+        else if(phaseOfGame == 1){ 
+            if(!myTurn && isClient)
+                ClientHandler.sendDice();
+            else if(!myTurn && !isClient)
+                ServerHandler.sendDice();
+                
             Board.drawBoard(g);
             Dice.drawDice(g);
             if(showRoll)
