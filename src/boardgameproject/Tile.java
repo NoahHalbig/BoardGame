@@ -67,5 +67,8 @@ public class Tile {
     public void doRandomAssignment() {
         Board.randomAssignment(this);
     }
+    public tileType getTileType(){
+        return thisTileType;
+    }
    
 }
