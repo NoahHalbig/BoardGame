@@ -29,8 +29,9 @@ public class BoardGameProject extends JFrame implements Runnable {
     public static String serverString = null;
     public static String clientString = null;
     
-    public static Player clientPlayer = null;
-    public static Player serverPlayer = null;
+    public static Player me = null;
+    
+    
     
     String host = new String();
  
@@ -442,6 +443,8 @@ public class BoardGameProject extends JFrame implements Runnable {
         {    Tile tempTile = (Tile) Tile.getTiles().get(i);
             tempTile.doRandomAssignment();
             }
+        if(!isClient)
+                serverHandler.sendBoard(Board.getHexBoard());
         
         }
             
@@ -449,20 +452,26 @@ public class BoardGameProject extends JFrame implements Runnable {
         reset();
 
         }
-        if(isClient)
+        if(isClient && phaseOfGame == 1)
             if(clientDiceRoll < serverValue){
-                clientPlayer.order = 2;
-                serverPlayer.order = 1;
+                me.order = 2;
                 phaseOfGame = 2;}
             else if(clientDiceRoll == serverValue)
-                phaseOfGame = 1;
-        else
-            if(serverDiceRoll < clientValue){
-                clientPlayer.order = 2;
-                serverPlayer.order = 1;
+            {   me.order = 1;
                 phaseOfGame = 2;}
-            else if(serverDiceRoll == clientValue)
-                phaseOfGame = 1;
+            else
+                me.order = 1;
+        else if(phaseOfGame == 1)
+            if(serverDiceRoll < clientValue ){
+                me.order = 2;
+                phaseOfGame = 2;}
+            else if(serverDiceRoll == clientValue){
+                me.order = 2;
+                phaseOfGame = 2;}
+            else{
+                me.order = 1;
+                phaseOfGame = 2;}
+            
         
         
         

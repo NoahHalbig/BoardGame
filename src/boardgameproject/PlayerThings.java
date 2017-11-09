@@ -9,6 +9,7 @@ public abstract class PlayerThings {
     int numPoints;
     Color playerColor;
     int order = 0;
+    int numPlayers = 2;
         
     
     

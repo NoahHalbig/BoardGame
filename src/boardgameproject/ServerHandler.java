@@ -70,7 +70,15 @@ public class ServerHandler
                         BoardGameProject.myTurn = false;
 		}            
     }
-    public static void sendBoard(){
+    public static void sendBoard(Tile[][] _board){
+//        if (connected)
+//            for(int i = 0; i < 20; i++)
+            
+        
+        
+        
+        
+        
         
     }
     public static void sendDice(){

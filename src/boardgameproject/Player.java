@@ -10,6 +10,9 @@ public class Player extends PlayerThings{
         for(int i = 0; i < BoardGameProject.NUM_RESOURCE_TYPES; i++)
             resources[i] = 0;
     }
+    public static Player getPlayerOne(){
+        
+    }
     
     
 }
