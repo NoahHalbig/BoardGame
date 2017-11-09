@@ -135,7 +135,7 @@ public class Dice {
         num1 = (int)(Math.random()*6+1);
         num2 = (int) (Math.random()*6+1);
         
-        return ("" + num1 + ":" + num2);
+        return ("" + num1 + ":" + num2 + ":" + (num1 + num2));
     } 
     public static int getNumTotal(){
         return (num1 + num2);
@@ -144,7 +144,7 @@ public class Dice {
         num1 = _num;
     }
     public static void setNum2(int _num){
-        num1 = _num;
+        num2 = _num;
     }
      
 }
