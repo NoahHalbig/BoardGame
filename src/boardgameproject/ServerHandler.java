@@ -110,7 +110,7 @@ public class ServerHandler
                             int post1 = Integer.parseInt(inputLine.split(":")[1]);
                             Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
                             Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
-                            BoardGameProject.serverValue = Integer.parseInt(inputLine.split(":")[2]);
+                            BoardGameProject.clientValue = Integer.parseInt(inputLine.split(":")[2]);
                             
                             BoardGameProject.myTurn = true;
                         }

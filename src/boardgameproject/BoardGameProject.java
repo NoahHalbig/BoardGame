@@ -71,7 +71,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                                 serverString = Dice.getRandomNum(); 
                                 ServerHandler.sendPieceMove(serverString);
                                 serverDiceRoll = Dice.getNumTotal();
-                                phaseOfGame = 2;
+//                                phaseOfGame = 2;
                             }
                         }
                     }
@@ -333,7 +333,7 @@ public class BoardGameProject extends JFrame implements Runnable {
             Dice.drawDice(g);
             if(showRoll)
                 Board.showRoll(g);//need to add bounding box for thing
-            if(clientValue > 0){
+            if(clientValue > 0 || clientDiceRoll > 0){
                 g.setColor(Color.WHITE);
                 g.fillRect(0, Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
@@ -343,12 +343,12 @@ public class BoardGameProject extends JFrame implements Runnable {
                 g.drawString("Client's Dice Roll", 0, Window.getY(0) - Window.YBORDER*3/4);
                 
             }
-            if(serverValue > 0){
+            if(serverValue > 0 || serverDiceRoll > 0){
                 g.setColor(Color.WHITE);
                 g.fillRect(Window.getX(Window.getWidth2()), Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
                 g.setColor(Color.BLACK);
-                g.drawString("" + serverDiceRoll, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                g.drawString("" + serverDiceRoll, Window.getX(Window.getWidth2()) + Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
                  g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
                 g.drawString("Server's Dice Roll", Window.getX(Window.getWidth2()), Window.getY(0) - Window.YBORDER*3/4);
                 
