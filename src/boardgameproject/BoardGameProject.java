@@ -29,6 +29,9 @@ public class BoardGameProject extends JFrame implements Runnable {
     public static String serverString = null;
     public static String clientString = null;
     
+    public static Player clientPlayer = null;
+    public static Player serverPlayer = null;
+    
     String host = new String();
  
     public static boolean isConnecting = false;
@@ -71,6 +74,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                                 serverString = Dice.getRandomNum(); 
                                 ServerHandler.sendPieceMove(serverString);
                                 serverDiceRoll = Dice.getNumTotal();
+                                
 //                                phaseOfGame = 2;
                             }
                         }
@@ -374,7 +378,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
             }
         }
-        else if(phaseOfGame ==2){
+        else if(phaseOfGame == 2){
             
         }
             
@@ -447,7 +451,11 @@ public class BoardGameProject extends JFrame implements Runnable {
         reset();
 
         }
-        
+        if(isClient)
+            if(clientDiceRoll < serverValue)
+                
+        else
+            if(serverDiceRoll < clientValue)
         
         
         

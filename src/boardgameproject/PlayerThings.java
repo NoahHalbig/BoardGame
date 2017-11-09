@@ -8,6 +8,7 @@ public abstract class PlayerThings {
     int[] resources = new int[BoardGameProject.NUM_RESOURCE_TYPES];
     int numPoints;
     Color playerColor;
+    int order = 0;
         
     
     
