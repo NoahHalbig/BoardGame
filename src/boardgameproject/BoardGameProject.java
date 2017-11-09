@@ -24,6 +24,8 @@ public class BoardGameProject extends JFrame implements Runnable {
     public static boolean myTurn;
     public static int serverValue = 0;
     public static int clientValue = 0;
+    public static int clientDiceRoll = 0;
+    public static int serverDiceRoll = 0;
     public static String serverString = null;
     public static String clientString = null;
     
@@ -63,10 +65,13 @@ public class BoardGameProject extends JFrame implements Runnable {
                            if(isClient && myTurn){
                                 clientString = Dice.getRandomNum();
                                 ClientHandler.sendPieceMove(clientString);
+                                clientDiceRoll = Dice.getNumTotal();
                             }
                             else if(myTurn){
                                 serverString = Dice.getRandomNum(); 
                                 ServerHandler.sendPieceMove(serverString);
+                                serverDiceRoll = Dice.getNumTotal();
+                                phaseOfGame = 2;
                             }
                         }
                     }
@@ -324,11 +329,6 @@ public class BoardGameProject extends JFrame implements Runnable {
         if(phaseOfGame == 0)
             Board.drawPhaseOne(g, host);
         else if(phaseOfGame == 1){ 
-            if(!myTurn && isClient)
-                ClientHandler.sendDice();
-            else if(!myTurn && !isClient)
-                ServerHandler.sendDice();
-                
             Board.drawBoard(g);
             Dice.drawDice(g);
             if(showRoll)
@@ -338,9 +338,19 @@ public class BoardGameProject extends JFrame implements Runnable {
                 g.fillRect(0, Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
                 g.setColor(Color.BLACK);
-                g.drawString("" + clientValue, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                g.drawString("" + clientDiceRoll, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
                  g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
                 g.drawString("Client's Dice Roll", 0, Window.getY(0) - Window.YBORDER*3/4);
+                
+            }
+            if(serverValue > 0){
+                g.setColor(Color.WHITE);
+                g.fillRect(Window.getX(Window.getWidth2()), Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
+                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+                g.setColor(Color.BLACK);
+                g.drawString("" + serverDiceRoll, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
+                g.drawString("Server's Dice Roll", Window.getX(Window.getWidth2()), Window.getY(0) - Window.YBORDER*3/4);
                 
             }
         }
