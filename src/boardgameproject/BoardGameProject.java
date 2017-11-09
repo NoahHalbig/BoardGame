@@ -64,11 +64,13 @@ public class BoardGameProject extends JFrame implements Runnable {
                                 clientString = Dice.getRandomNum();
                                 ClientHandler.sendPieceMove(clientString);
                                 myTurn = false;
+                                clientValue = Dice.getNumTotal();
                             }
                             else if(myTurn){
                                 serverString = Dice.getRandomNum(); 
                                 ServerHandler.sendPieceMove(serverString);
                                 myTurn = false;
+                                serverValue = Dice.getNumTotal();
                             }
                         }
                     }

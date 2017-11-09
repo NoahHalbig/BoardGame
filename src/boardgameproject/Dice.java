@@ -137,8 +137,14 @@ public class Dice {
         
         return ("" + num1 + ":" + num2);
     } 
-    public static String getNum(){
-        return ("" + num1 + ":" + num2);
+    public static int getNumTotal(){
+        return (num1 + num2);
+    }
+    public static void setNum1(int _num){
+        num1 = _num;
+    }
+    public static void setNum2(int _num){
+        num1 = _num;
     }
      
 }

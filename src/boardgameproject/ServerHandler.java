@@ -108,9 +108,9 @@ public class ServerHandler
 //add or modify.                            
                             int post0 = Integer.parseInt(inputLine.split(":")[0]);
                             int post1 = Integer.parseInt(inputLine.split(":")[1]);
-                            int numDice1 = Integer.parseInt(inputLine.split(":")[0]);
-                            int numDice2 = Integer.parseInt(inputLine.split(":")[1]);
-                            BoardGameProject.clientValue=post0;
+                            Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
+                            Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
+                            
                             BoardGameProject.myTurn = true;
                         }
                         catch (NumberFormatException e)
