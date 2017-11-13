@@ -81,11 +81,9 @@ public class BoardGameProject extends JFrame implements Runnable {
                     }
                     if(phaseOfGame == 2)
                     {
-                        Settlements.settlementTime = true;
-                        if(Settlements.settlementTime)
-                        {    
+                           
                             Settlements.placeSettlements(e);
-                        }
+                        
                
                     }    
                     
