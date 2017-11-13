@@ -15,7 +15,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
-    int phaseOfGame = 0;
+    int phaseOfGame = 2;
     private boolean showRoll = true;
     
     
@@ -58,8 +58,9 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
    
                 if (e.BUTTON1 == e.getButton() ) {
-                    if(phaseOfGame == 1)
-                    {    int mouseXPos = e.getX();
+                    if(phaseOfGame == 1)               
+                    {
+                        int mouseXPos = e.getX();
                         int mouseYPos = e.getY();
                         if(Window.getX(mouseXPos) > Window.getX(Window.getX(0) + 40)&&
                         Window.getX(mouseXPos) < Window.getX(Window.getWidth2() - 80) &&
@@ -78,13 +79,25 @@ public class BoardGameProject extends JFrame implements Runnable {
                             }
                         }
                     }
-                        
-                
+                    if(phaseOfGame == 2)
+                    {
+                        Settlements.settlementTime = true;
+                        if(Settlements.settlementTime)
+                        {    
+                            Settlements.placeSettlements(e);
+                        }
+               
+                    }    
                     
                 }
-
+                if (e.BUTTON2 == e.getButton()) {
+                    if(phaseOfGame == 2)
+                        Cities.placeCities(e);
+                }
+                
                 if (e.BUTTON3 == e.getButton()) {
-                    
+                    if(phaseOfGame == 2)
+                        Roads.placeRoad(e);
                 }
                 repaint();
             }
@@ -334,6 +347,7 @@ public class BoardGameProject extends JFrame implements Runnable {
         else if(phaseOfGame == 1){ 
             Board.drawBoard(g);
             Dice.drawDice(g);
+         
             if(showRoll)
                 Board.showRoll(g);//need to add bounding box for thing
             if(clientDiceRoll > 0){
@@ -378,7 +392,11 @@ public class BoardGameProject extends JFrame implements Runnable {
             }
         }
         else if(phaseOfGame == 2){
-            
+            Board.drawBoard(g);
+            Dice.drawDice(g);
+            Roads.drawRoads(g);
+            Cities.drawCities(g);
+            Settlements.Draw(g);
         }
             
         
@@ -439,12 +457,15 @@ public class BoardGameProject extends JFrame implements Runnable {
         Tile tile18 = new Tile(Tile.tileType.Ore, g);
         Tile tile19 = new Tile(Tile.tileType.Wood, g);
         Tile tile20 = new Tile(Tile.tileType.Gold, g);
+        
+        
         for(int i = 0; i < 20; i++)
         {    Tile tempTile = (Tile) Tile.getTiles().get(i);
             tempTile.doRandomAssignment();
             }
         if(!isClient)
-                serverHandler.sendBoard(Board.getHexBoard());
+        {    
+//                serverHandler.sendBoard(Board.getHexBoard());
         
         }
             
@@ -481,6 +502,7 @@ public class BoardGameProject extends JFrame implements Runnable {
         
         
         
+    }
     }
 
 ////////////////////////////////////////////////////////////////////////////

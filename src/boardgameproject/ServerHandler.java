@@ -73,13 +73,17 @@ public class ServerHandler
     public static void sendBoard(Tile[][] _board){
         int tempTileType = 0;
         if (connected)
+        {    
             for(int i = 0; i < 4; i++)
                 for(int z = 0; z < 5; z++)
-                    if(_board[i][z].getTileType() ==  )
+                {
+                    
+                }   
+//                    if(_board[i][z].getTileType() ==  )
             
         
         
-        
+                    }
         
         
         
