@@ -392,7 +392,7 @@ public class BoardGameProject extends JFrame implements Runnable {
         else if(phaseOfGame == 2){
             Board.drawBoard(g);
             Dice.drawDice(g);
-            Roads.drawRoads(g);
+            Roads.drawAllRoads(g);
             Cities.drawCities(g);
             Settlements.Draw(g);
         }

@@ -18,18 +18,27 @@ public class Roads extends Building{
     protected static ArrayList<Roads> roads = new ArrayList<Roads>();  
     protected static ArrayList<Settlements> settlements = new ArrayList<Settlements>(); 
     
-    static int xPos = Window.getWidth2()/2 + 100;
-    static int yPos = Window.getY(Window.getHeight2()) + Window.XBORDER/2 - 30;
+    int xPos = Window.getWidth2()/2 + 100;
+    int yPos = Window.getY(Window.getHeight2()) + Window.XBORDER/2 - 30;
     
-    public static void drawRoads(Graphics2D g)
+    public static void drawAllRoads(Graphics2D g)
+    {
+        for (int i=0;i<roads.size();i++) {
+            roads.get(i).drawRoads(g);
+        }    
+    }
+    public void drawRoads(Graphics2D g)
     {
         g.setColor(Color.MAGENTA);
         g.fillRect(xPos, yPos, width, height);    
     }
     public static void placeRoad(MouseEvent e){
+        Roads obj = new Roads();
+        
         int mouseXPos = e.getX();
         int mouseYPos = e.getY();
-        xPos = mouseXPos;
-        yPos = mouseYPos;  
+        obj.xPos = mouseXPos - width/2;
+        obj.yPos = mouseYPos - height/2;  
+       roads.add(obj);
     }
 }
