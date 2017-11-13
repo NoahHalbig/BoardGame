@@ -9,25 +9,51 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.net.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 
 public class Cities extends Building{
     static int pointValue = 2;
     private static int width = 60;
     private static int height = 40; 
-    static int xPos = Window.getWidth2()/2 + 200;
-    static int yPos = Window.getY(Window.getHeight2()) + Window.XBORDER/2;
+    int xPos = Window.getWidth2()/2 + 200;
+    int yPos = Window.getY(Window.getHeight2()) + Window.XBORDER/2;
+    protected static ArrayList<Cities> cities = new ArrayList<Cities>();  
     
-    public static void drawCities(Graphics2D g)
+    public static void drawAllCities(Graphics2D g)
     {
-        g.setColor(Color.MAGENTA);
-        g.fillRect(xPos, yPos, width -10, height );    
+        for (int i=0;i<cities.size();i++) {
+            cities.get(i).drawCities(g);
+        }    
+    }
+    public void drawCities(Graphics2D g)
+    {
+        g.setColor(Color.DARK_GRAY);
+        g.fillRect(xPos, yPos, width -10, height);    
         g.fillRect(xPos, yPos, height - 20, width);   
     }
+
     public static void placeCities(MouseEvent e){
+        Cities obj = new Cities();
+     
         int mouseXPos = e.getX();
-            int mouseYPos = e.getY();
-            xPos = mouseXPos;
-            yPos = mouseYPos;  
+        int mouseYPos = e.getY();
+        for(int i = Window.getX(0); i <= Window.getX(Window.getWidth2()); i += Window.getWidth2() / Board.NUM_COLUMNS)
+        {  
+            for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
+            {
+                if(mouseXPos > i - width/2 && 
+                mouseXPos < i + width/2 && 
+                mouseYPos > j - height/2 && 
+                mouseYPos < j + height/2)
+                {    
+                    obj.xPos = mouseXPos - width / 2;
+                    obj.yPos = mouseYPos - height / 2;  
+
+                    cities.add(obj);
+                }
+            }
+        }    
+
     }
 }
