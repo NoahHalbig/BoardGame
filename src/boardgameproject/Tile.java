@@ -70,5 +70,37 @@ public class Tile {
     public tileType getTileType(){
         return thisTileType;
     }
+    public static int conevertTileToInt(tileType boardTile){
+        if(boardTile == tileType.Sheep)
+            return 1;
+        else if(boardTile == tileType.Wheat)
+            return 2;
+        else if(boardTile == tileType.Wood)
+            return 3;
+        else if(boardTile == tileType.Brick)
+            return 4;
+        else if(boardTile == tileType.Ore)
+            return 5;
+        else if(boardTile == tileType.Desert)
+            return 6;
+        else
+           return 7;
+    }
+    public static tileType convertIntToTile(int tileNumber){
+        if(tileNumber == 1)
+            return tileType.Sheep;
+        else if(tileNumber == 2)
+            return tileType.Wheat;
+        else if(tileNumber == 3)
+            return tileType.Wood;
+        else if(tileNumber == 4)
+            return tileType.Brick;
+        else if(tileNumber == 5)
+            return tileType.Ore;
+        else if(tileNumber == 6)
+            return tileType.Desert;
+        else
+           return tileType.Gold;
+    }
    
 }

@@ -82,9 +82,7 @@ public class ClientHandler
 			out.println("esc");
 		}
 	}
-        public static void sendDice(){
-            
-        }
+        
 
 
 	public static void recievePieceMove()
@@ -109,6 +107,17 @@ public class ClientHandler
 							}
 //add or modify.
 							// row:col:initrow:initcol
+                                                        if(BoardGameProject.receivingBoardFirst){
+                                                            int firstTile = Integer.parseInt(inputLine.split(":")[0]);
+                                                            int secondTile = Integer.parseInt(inputLine.split(":")[1]);
+                                                            int thirdTile = Integer.parseInt(inputLine.split(":")[2]);
+                                                            int fourthTile = Integer.parseInt(inputLine.split(":")[03]);
+                                                            int fifthTile = Integer.parseInt(inputLine.split(":")[04]);
+                                                            int sixthTile = Integer.parseInt(inputLine.split(":")[05]);
+                                                            int seventhTile = Integer.parseInt(inputLine.split(":")[06]);
+                                                            int eighthTile = Integer.parseInt(inputLine.split(":")[07]); 
+                                                        }
+                                                        
 							int post0 = Integer.parseInt(inputLine.split(":")[0]);
 							int post1 = Integer.parseInt(inputLine.split(":")[1]);
                                                         Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));

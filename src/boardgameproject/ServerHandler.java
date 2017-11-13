@@ -70,25 +70,36 @@ public class ServerHandler
                         BoardGameProject.myTurn = false;
 		}            
     }
-    public static void sendBoard(Tile[][] _board){
-        int tempTileType = 0;
-        if (connected)
-        {    
-            for(int i = 0; i < 4; i++)
-                for(int z = 0; z < 5; z++)
-                {
-                    
-                }   
-//                    if(_board[i][z].getTileType() ==  )
-            
+    public static void sendBoard(Tile[][] _board, int stage){
+        String boardString = null;
+        Tile tempBoard[][] = Board.getHexBoard();
+        if (connected){  
+            if(stage == 1){
+                for(int i = 0; i < 2; i++)
+                    for(int z = 0; (z < 5 && i == 0) || (z < 3 && i == 1); z++)
+                    {
+                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
+                    }   
+                pw.println(boardString);
+                stage = 2;
+            }
+            else if(stage == 2){
+                for(int i = 1; i < 4; i++)
+                    for(int z = 0; (z >= 3 && z < 5 && i == 1) || (z < 5 && i == 2 || (z < 1 && i == 3)); z++)
+                    {
+                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
+                    }   
+                pw.println(boardString);
+                stage = 3;
+            }
+            else{
+                
+            }
+            pw.println(boardString);
+
+        }
         
         
-                    }
-        
-        
-        
-    }
-    public static void sendDice(){
         
     }
     public static void sendDisconnect()

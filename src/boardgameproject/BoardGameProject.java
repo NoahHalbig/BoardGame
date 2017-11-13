@@ -17,6 +17,12 @@ public class BoardGameProject extends JFrame implements Runnable {
     static int NUM_RESOURCE_TYPES = 5;
     int phaseOfGame = 2;
     private boolean showRoll = true;
+    static public boolean sendingBoardFirst = true;
+    static public boolean sendingBoardSecond = true;
+    static public boolean sendingBoardThird = true;
+    static public boolean receivingBoardFirst = true;
+    static public boolean receivingBoardSecond = true;
+    static public boolean receivingBoardThird = true;
     
     
     final int portNumber = 5657;
@@ -347,7 +353,7 @@ public class BoardGameProject extends JFrame implements Runnable {
             Dice.drawDice(g);
          
             if(showRoll)
-                Board.showRoll(g);//need to add bounding box for thing
+                Board.showRoll(g);
             if(clientDiceRoll > 0){
                 g.setColor(Color.WHITE);
                 g.fillRect(0, Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
@@ -461,10 +467,31 @@ public class BoardGameProject extends JFrame implements Runnable {
         {    Tile tempTile = (Tile) Tile.getTiles().get(i);
             tempTile.doRandomAssignment();
             }
-        if(!isClient)
+        if(isClient){
+            sendingBoardFirst = false;
+            sendingBoardSecond = false;
+            sendingBoardThird = false;
+        }
+        else{
+            receivingBoardFirst = false;
+            receivingBoardSecond = false;
+            receivingBoardThird = false;
+            
+        }
+        if(!isClient && sendingBoardFirst)
         {    
-//                serverHandler.sendBoard(Board.getHexBoard());
-        
+                ServerHandler.sendBoard(Board.getHexBoard(), 1);
+                sendingBoardFirst = false;
+        }
+        else if(!isClient && sendingBoardSecond)
+        {    
+                ServerHandler.sendBoard(Board.getHexBoard(), 2);
+                sendingBoardFirst = false;
+        }
+        if(!isClient && sendingBoardThird)
+        {    
+                ServerHandler.sendBoard(Board.getHexBoard(), 3);
+                sendingBoardFirst = false;
         }
             
         
@@ -490,6 +517,7 @@ public class BoardGameProject extends JFrame implements Runnable {
             else{
                 me.order = 1;
                 phaseOfGame = 2;}
+        
             
         
         
