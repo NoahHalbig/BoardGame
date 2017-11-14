@@ -18,8 +18,8 @@ public class Settlements extends Building{
     
     protected static ArrayList<Corner> corners = new ArrayList<Corner>();  
     protected static ArrayList<Settlements> settlements = new ArrayList<Settlements>();  
-    int xPos = Window.getWidth2()/2;
-    int yPos = Window.getY(Window.getHeight2()) + Window.XBORDER/2;
+    int xPos = 0;
+    int yPos = 0;
     
     public static void Draw(Graphics2D g) {
         for (int i=0;i<settlements.size();i++) {
@@ -40,18 +40,22 @@ public class Settlements extends Building{
         {  
             for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
             {   
-                if(mouseXPos > i - width/2 && 
-                mouseXPos < i + width/2 && 
-                mouseYPos > j - height/2 && 
-                mouseYPos < j + height/2)
-                {   for(int k = 0; k < settlements.size(); k++) 
-                        if(settlements.get(k).xPos > i - width/2 && settlements.get(k).xPos < i + width/2
-                        && settlements.get(k).yPos > j - height/2 && settlements.get(k).yPos < j + height/2)
-                        {}
-                        else{
-                            obj.xPos = mouseXPos - width / 2;
-                            obj.yPos = mouseYPos - height / 2;  
-                            settlements.add(obj);
+                if(mouseXPos > i - width/2 && mouseXPos < i + width/2 && mouseYPos > j - height/2 && mouseYPos < j + height/2){
+                    if(settlements.isEmpty())
+                    {   obj.xPos = mouseXPos - width / 2;
+                        obj.yPos = mouseYPos - height / 2;  
+                        settlements.add(obj);
+                    }     
+                    else
+                        for(int k = 0; k < settlements.size(); k++) 
+                        {   if(settlements.get(k).xPos > i - width/2 && settlements.get(k).xPos < i + width/2
+                            && settlements.get(k).yPos > j - height/2 && settlements.get(k).yPos < j + height/2)
+                            {}
+                            else{
+                                obj.xPos = mouseXPos - width / 2;
+                                obj.yPos = mouseYPos - height / 2;  
+                                settlements.add(obj);
+                            }
                         }
                 }
                 
