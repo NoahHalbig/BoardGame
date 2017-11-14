@@ -41,27 +41,36 @@ public class Settlements extends Building{
             for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
             {   
                 if(mouseXPos > i - width/2 && mouseXPos < i + width/2 && mouseYPos > j - height/2 && mouseYPos < j + height/2){
-                    if(settlements.isEmpty())
-                    {   obj.xPos = mouseXPos - width / 2;
-                        obj.yPos = mouseYPos - height / 2;  
-                        settlements.add(obj);
-                    }     
-                    else
-                        for(int k = 0; k < settlements.size(); k++) 
-                        {   if(settlements.get(k).xPos > i - width/2 && settlements.get(k).xPos < i + width/2
-                            && settlements.get(k).yPos > j - height/2 && settlements.get(k).yPos < j + height/2)
-                            {}
-                            else{
-                                obj.xPos = mouseXPos - width / 2;
-                                obj.yPos = mouseYPos - height / 2;  
-                                settlements.add(obj);
-                            }
-                        }
+                    if(checkEmptiness(i, j, obj, mouseXPos, mouseYPos))
+                        settlements.add(obj);  
                 }
                 
             
             }    
         
         }
+    }
+    public static boolean checkEmptiness(int i, int j, Settlements obj, int mouseXPos, int mouseYPos){
+        boolean returnTrue = true;
+        if(settlements.isEmpty())
+        {   obj.xPos = mouseXPos - width / 2;
+            obj.yPos = mouseYPos - height / 2;  
+            returnTrue = true;
+        }     
+        else
+            for(int k = 0; k < settlements.size(); k++) 
+            {   if(settlements.get(k).xPos + width/2 > i - width/2 && settlements.get(k).xPos - width/2 < i + width/2
+                && settlements.get(k).yPos + height/2 > j - height/2 && settlements.get(k).yPos - height/2 < j + height/2)
+                {returnTrue = false;}
+                else{
+                    obj.xPos = mouseXPos - width / 2;
+                    obj.yPos = mouseYPos - height / 2;  
+                    
+                }
+            }
+        if(!returnTrue)
+            return false;
+        else
+            return true;
     }
 }
