@@ -38,16 +38,13 @@ public class Settlements extends Building{
         int mouseYPos = e.getY();
         for(int i = Window.getX(0); i <= Window.getX(Window.getWidth2()); i += Window.getWidth2() / Board.NUM_COLUMNS)
         {  
-            for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
+            for(int j = Window.getY(Window.getHeight2() / Board.NUM_ROWS / 2); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
             {   
                 if(mouseXPos > i - width/2 && mouseXPos < i + width/2 && mouseYPos > j - height/2 && mouseYPos < j + height/2){
                     if(checkEmptiness(i, j, obj, mouseXPos, mouseYPos))
                         settlements.add(obj);  
                 }
-                
-            
-            }    
-        
+            }           
         }
     }
     public static boolean checkEmptiness(int i, int j, Settlements obj, int mouseXPos, int mouseYPos){

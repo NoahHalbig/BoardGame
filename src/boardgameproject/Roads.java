@@ -35,10 +35,40 @@ public class Roads extends Building{
     public static void placeRoad(MouseEvent e){
         Roads obj = new Roads();
         
-        int mouseXPos = e.getX();
+         int mouseXPos = e.getX();
         int mouseYPos = e.getY();
-        obj.xPos = mouseXPos - width/2;
-        obj.yPos = mouseYPos - height/2;  
-       roads.add(obj);
+        for(int i = Window.getX(0); i <= Window.getX(Window.getWidth2()); i += Window.getWidth2() / Board.NUM_COLUMNS)
+        {  
+            for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
+            {   
+                if(mouseXPos > i - width/2 && mouseXPos < i + width/2 && mouseYPos > j - height/2 && mouseYPos < j + height/2){
+                    if(checkEmptiness(i, j, obj, mouseXPos, mouseYPos))
+                        roads.add(obj);  
+                }
+            }           
+        }
+    }
+     public static boolean checkEmptiness(int i, int j, Roads obj, int mouseXPos, int mouseYPos){
+        boolean returnTrue = true;
+        if(settlements.isEmpty())
+        {   obj.xPos = mouseXPos - width / 2;
+            obj.yPos = mouseYPos - height / 2;  
+            returnTrue = true;
+        }     
+        else
+            for(int k = 0; k < settlements.size(); k++) 
+            {   if(settlements.get(k).xPos + width/2 > i - width/2 && settlements.get(k).xPos - width/2 < i + width/2
+                && settlements.get(k).yPos + height/2 > j - height/2 && settlements.get(k).yPos - height/2 < j + height/2)
+                {returnTrue = false;}
+                else{
+                    obj.xPos = mouseXPos - width / 2;
+                    obj.yPos = mouseYPos - height / 2;  
+                    
+                }
+            }
+        if(!returnTrue)
+            return false;
+        else
+            return true;
     }
 }
