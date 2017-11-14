@@ -478,21 +478,7 @@ public class BoardGameProject extends JFrame implements Runnable {
             receivingBoardThird = false;
             
         }
-        if(!isClient && sendingBoardFirst)
-        {    
-                ServerHandler.sendBoard(Board.getHexBoard(), 1);
-                sendingBoardFirst = false;
-        }
-        else if(!isClient && sendingBoardSecond)
-        {    
-                ServerHandler.sendBoard(Board.getHexBoard(), 2);
-                sendingBoardFirst = false;
-        }
-        if(!isClient && sendingBoardThird)
-        {    
-                ServerHandler.sendBoard(Board.getHexBoard(), 3);
-                sendingBoardFirst = false;
-        }
+        
             
         
         reset();
@@ -517,18 +503,28 @@ public class BoardGameProject extends JFrame implements Runnable {
             else{
                 me.order = 1;
                 phaseOfGame = 2;}
-        
-            
-        
-        
-        
-        
-        
-        
-        
-        
-        
+          
     }
+        if(!isClient && sendingBoardFirst)
+        {    
+                ServerHandler.sendBoard(Board.getHexBoard(), 1);
+                sendingBoardFirst = false;
+        }
+        else if(!isClient && sendingBoardSecond)
+        {    
+                ServerHandler.sendBoard(Board.getHexBoard(), 2);
+                sendingBoardFirst = false;
+        }
+        else if(!isClient && sendingBoardThird)
+        {    
+                ServerHandler.sendBoard(Board.getHexBoard(), 3);
+                sendingBoardFirst = false;
+        }
+        
+        
+        
+        
+        
     }
 
 ////////////////////////////////////////////////////////////////////////////

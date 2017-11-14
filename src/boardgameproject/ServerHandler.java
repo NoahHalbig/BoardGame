@@ -81,7 +81,7 @@ public class ServerHandler
                         boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
                     }   
                 pw.println(boardString);
-                stage = 2;
+                
             }
             else if(stage == 2){
                 for(int i = 1; i < 4; i++)
@@ -90,10 +90,15 @@ public class ServerHandler
                         boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
                     }   
                 pw.println(boardString);
-                stage = 3;
+                
             }
             else{
-                
+                for(int i = 3; i < 4; i++)
+                    for(int z = 0; (z > 0 && i == 3); z++)
+                    {
+                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
+                    }   
+                pw.println(boardString);
             }
             pw.println(boardString);
 

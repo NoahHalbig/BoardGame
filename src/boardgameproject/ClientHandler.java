@@ -117,7 +117,16 @@ public class ClientHandler
                                                             int seventhTile = Integer.parseInt(inputLine.split(":")[06]);
                                                             int eighthTile = Integer.parseInt(inputLine.split(":")[07]); 
                                                         }
-                                                        else if(BoardGameProject.receivingBoard)
+                                                        else if(BoardGameProject.receivingBoardSecond){
+                                                            int ninthTile = Integer.parseInt(inputLine.split(":")[0]);
+                                                            int tenthTile = Integer.parseInt(inputLine.split(":")[1]);
+                                                            int eleventhTile = Integer.parseInt(inputLine.split(":")[2]);
+                                                            int twelfthTile = Integer.parseInt(inputLine.split(":")[03]);
+                                                            int thirteenthTile = Integer.parseInt(inputLine.split(":")[04]);
+                                                            int fourteenthTile = Integer.parseInt(inputLine.split(":")[05]);
+                                                            int fifteenthhTile = Integer.parseInt(inputLine.split(":")[06]);
+                                                            int sixteenthTile = Integer.parseInt(inputLine.split(":")[07]); 
+                                                        }
                                                         
 							int post0 = Integer.parseInt(inputLine.split(":")[0]);
 							int post1 = Integer.parseInt(inputLine.split(":")[1]);
