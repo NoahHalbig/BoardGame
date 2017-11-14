@@ -49,13 +49,13 @@ public class Settlements extends Building{
                         placeSettlement = false;
                     }    
                 }    
-                if(placeSettlement)
+                if(placeSettlement)//get rid of this
                 {    
                     if(mouseXPos > i - width/2 && 
                     mouseXPos < i + width/2 && 
                     mouseYPos > j - height/2 && 
                     mouseYPos < j + height/2)
-                    {    
+                    {    //put settlement locator inside this if statement, use the i and j variables to determine if there is already a settlement there in same way as Mousexpos/ypos
                         obj.xPos = mouseXPos - width / 2;
                         obj.yPos = mouseYPos - height / 2;  
 
