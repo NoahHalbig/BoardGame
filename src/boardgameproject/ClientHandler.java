@@ -117,6 +117,7 @@ public class ClientHandler
                                                             int seventhTile = Integer.parseInt(inputLine.split(":")[06]);
                                                             int eighthTile = Integer.parseInt(inputLine.split(":")[07]); 
                                                         }
+                                                        else if(BoardGameProject.receivingBoard)
                                                         
 							int post0 = Integer.parseInt(inputLine.split(":")[0]);
 							int post1 = Integer.parseInt(inputLine.split(":")[1]);
