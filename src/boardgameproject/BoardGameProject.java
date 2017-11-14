@@ -15,7 +15,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
-    int phaseOfGame = 2;
+    int phaseOfGame = 0;
     private boolean showRoll = true;
     static public boolean sendingBoardFirst = true;
     static public boolean sendingBoardSecond = true;
@@ -505,21 +505,22 @@ public class BoardGameProject extends JFrame implements Runnable {
                 phaseOfGame = 2;}
           
     }
-        if(!isClient && sendingBoardFirst)
-        {    
-                ServerHandler.sendBoard(Board.getHexBoard(), 1);
-                sendingBoardFirst = false;
-        }
-        else if(!isClient && sendingBoardSecond)
-        {    
-                ServerHandler.sendBoard(Board.getHexBoard(), 2);
-                sendingBoardFirst = false;
-        }
-        else if(!isClient && sendingBoardThird)
-        {    
-                ServerHandler.sendBoard(Board.getHexBoard(), 3);
-                sendingBoardFirst = false;
-        }
+        if(ServerHandler.connected)
+            if(!isClient && sendingBoardFirst)
+            {    
+                    ServerHandler.sendBoard(Board.getHexBoard(), 1);
+                    sendingBoardFirst = false;
+            }
+            else if(!isClient && sendingBoardSecond)
+            {    
+                    ServerHandler.sendBoard(Board.getHexBoard(), 2);
+                    sendingBoardFirst = false;
+            }
+            else if(!isClient && sendingBoardThird)
+            {    
+                    ServerHandler.sendBoard(Board.getHexBoard(), 3);
+                    sendingBoardFirst = false;
+            }
         
         
         
