@@ -33,14 +33,38 @@ public class Settlements extends Building{
     }
     public static void placeSettlements(MouseEvent e){
         Settlements obj = new Settlements();
-     
+        
         int mouseXPos = e.getX();
         int mouseYPos = e.getY();
-        obj.xPos = mouseXPos;
-        obj.yPos = mouseYPos;  
-        
-        settlements.add(obj);
-            
+        for(int i = Window.getX(0); i <= Window.getX(Window.getWidth2()); i += Window.getWidth2() / Board.NUM_COLUMNS)
+        {  
+            for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
+            {
+                boolean placeSettlement = true;
+                for(int k = 0; k < settlements.size(); k++)
+                {
+                    if(settlements.get(k).xPos > mouseXPos - width/2 && settlements.get(k).xPos < mouseXPos + width/2
+                    && settlements.get(k).yPos > mouseYPos - height/2 && settlements.get(k).yPos < mouseYPos + height/2)
+                    {
+                        placeSettlement = false;
+                    }    
+                }    
+                if(placeSettlement)
+                {    
+                    if(mouseXPos > i - width/2 && 
+                    mouseXPos < i + width/2 && 
+                    mouseYPos > j - height/2 && 
+                    mouseYPos < j + height/2)
+                    {    
+                        obj.xPos = mouseXPos - width / 2;
+                        obj.yPos = mouseYPos - height / 2;  
+
+                        settlements.add(obj);
+                    }
+                }
+                
+            }
+        }    
         
     }
 }
