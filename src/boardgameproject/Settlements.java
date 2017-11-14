@@ -39,32 +39,25 @@ public class Settlements extends Building{
         for(int i = Window.getX(0); i <= Window.getX(Window.getWidth2()); i += Window.getWidth2() / Board.NUM_COLUMNS)
         {  
             for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
-            {
-                boolean placeSettlement = true;
-                for(int k = 0; k < settlements.size(); k++)
-                {
-                    if(settlements.get(k).xPos > mouseXPos - width/2 && settlements.get(k).xPos < mouseXPos + width/2
-                    && settlements.get(k).yPos > mouseYPos - height/2 && settlements.get(k).yPos < mouseYPos + height/2)
-                    {
-                        placeSettlement = false;
-                    }    
-                }    
-                if(placeSettlement)//get rid of this
-                {    
-                    if(mouseXPos > i - width/2 && 
-                    mouseXPos < i + width/2 && 
-                    mouseYPos > j - height/2 && 
-                    mouseYPos < j + height/2)
-                    {    //put settlement locator inside this if statement, use the i and j variables to determine if there is already a settlement there in same way as Mousexpos/ypos
-                        obj.xPos = mouseXPos - width / 2;
-                        obj.yPos = mouseYPos - height / 2;  
-
-                        settlements.add(obj);
-                    }
+            {   
+                if(mouseXPos > i - width/2 && 
+                mouseXPos < i + width/2 && 
+                mouseYPos > j - height/2 && 
+                mouseYPos < j + height/2)
+                {   for(int k = 0; k < settlements.size(); k++) 
+                        if(settlements.get(k).xPos > i - width/2 && settlements.get(k).xPos < i + width/2
+                        && settlements.get(k).yPos > j - height/2 && settlements.get(k).yPos < j + height/2)
+                        {}
+                        else{
+                            obj.xPos = mouseXPos - width / 2;
+                            obj.yPos = mouseYPos - height / 2;  
+                            settlements.add(obj);
+                        }
                 }
                 
-            }
-        }    
+            
+            }    
         
+        }
     }
 }
