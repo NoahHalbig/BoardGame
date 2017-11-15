@@ -122,14 +122,14 @@ public class ClientHandler
                                                             
                                                         }
                                                         else if(BoardGameProject.receivingBoardSecond){
-                                                            int ninthTile = Integer.parseInt(inputLine.split(":")[0]);
-                                                            int tenthTile = Integer.parseInt(inputLine.split(":")[1]);
-                                                            int eleventhTile = Integer.parseInt(inputLine.split(":")[2]);
-                                                            int twelfthTile = Integer.parseInt(inputLine.split(":")[03]);
-                                                            int thirteenthTile = Integer.parseInt(inputLine.split(":")[04]);
-                                                            int fourteenthTile = Integer.parseInt(inputLine.split(":")[05]);
-                                                            int fifteenthhTile = Integer.parseInt(inputLine.split(":")[06]);
-                                                            int sixteenthTile = Integer.parseInt(inputLine.split(":")[07]); 
+                                                            boardArray[8] = Integer.parseInt(inputLine.split(":")[0]);
+                                                            boardArray[9] = Integer.parseInt(inputLine.split(":")[1]);
+                                                            boardArray[10] = Integer.parseInt(inputLine.split(":")[2]);
+                                                            boardArray[11] = Integer.parseInt(inputLine.split(":")[03]);
+                                                            boardArray[12] = Integer.parseInt(inputLine.split(":")[04]);
+                                                            boardArray[13] = Integer.parseInt(inputLine.split(":")[05]);
+                                                            boardArray[14] = Integer.parseInt(inputLine.split(":")[06]);
+                                                            boardArray[15] = Integer.parseInt(inputLine.split(":")[07]); 
                                                             BoardGameProject.receivingBoardSecond = false;
                                                         }
                                                         else if(BoardGameProject.receivingBoardThird){
@@ -140,6 +140,8 @@ public class ClientHandler
                                                         }
                                                         else{
                                                             //do board making in this thing here
+                                                            for(int i = 0; i < boardArray.length; i ++)
+//                                                                Board.setHexBoard(boardArray[i], i);
                                                         }
                                                         
 							int post0 = Integer.parseInt(inputLine.split(":")[0]);
