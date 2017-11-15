@@ -12,14 +12,14 @@ import java.net.*;
 import java.awt.image.BufferedImage;
 
 public class Roads extends Building{
-    private static int width = 20;
-    private static int height = 80;
+    private int width = 20;
+    private int height = 80;
 
     protected static ArrayList<Roads> roads = new ArrayList<Roads>();  
     protected static ArrayList<Settlements> settlements = new ArrayList<Settlements>(); 
     
-    int xPos = Window.getWidth2()/2 + 100;
-    int yPos = Window.getY(Window.getHeight2()) + Window.XBORDER/2 - 30;
+    int xPos = 0;
+    int yPos = 0;
     
     public static void drawAllRoads(Graphics2D g)
     {
@@ -35,34 +35,71 @@ public class Roads extends Building{
     public static void placeRoad(MouseEvent e){
         Roads obj = new Roads();
         
-         int mouseXPos = e.getX();
+        int mouseXPos = e.getX();
         int mouseYPos = e.getY();
         for(int i = Window.getX(0); i <= Window.getX(Window.getWidth2()); i += Window.getWidth2() / Board.NUM_COLUMNS)
         {  
+            for(int j = Window.getY(Window.getHeight2() / Board.NUM_ROWS/2); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
+            {   
+                if(mouseXPos > i - obj.width/2 && mouseXPos < i + obj.width/2 && mouseYPos > j - obj.height/5 && mouseYPos < j + obj.height/5){
+                    obj.width = 20;
+                    obj.height = 80;
+                    if(checkEmptinessVertical(i, j, obj, mouseXPos, mouseYPos))
+                        roads.add(obj);  
+                }
+            }           
+        }
+        for(int i = Window.getX(Window.getWidth2()/ Board.NUM_COLUMNS / 2); i <= Window.getX(Window.getWidth2()); i += Window.getWidth2() / Board.NUM_COLUMNS)
+        {  
             for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
             {   
-                if(mouseXPos > i - width/2 && mouseXPos < i + width/2 && mouseYPos > j - height/2 && mouseYPos < j + height/2){
-                    if(checkEmptiness(i, j, obj, mouseXPos, mouseYPos))
+                if(mouseXPos > i - obj.width/5 && mouseXPos < i + obj.width/5 && mouseYPos > j - obj.height/2 && mouseYPos < j + obj.height/2){
+                    obj.width = 80;
+                    obj.height = 20;
+                    if(checkEmptinessHorizontal(i, j, obj, mouseXPos, mouseYPos))
                         roads.add(obj);  
                 }
             }           
         }
     }
-     public static boolean checkEmptiness(int i, int j, Roads obj, int mouseXPos, int mouseYPos){
+     public static boolean checkEmptinessVertical(int i, int j, Roads obj, int mouseXPos, int mouseYPos){
         boolean returnTrue = true;
-        if(settlements.isEmpty())
-        {   obj.xPos = mouseXPos - width / 2;
-            obj.yPos = mouseYPos - height / 2;  
+        if(roads.isEmpty())
+        {   obj.xPos = mouseXPos - obj.width / 2;
+            obj.yPos = mouseYPos - obj.height / 2;  
             returnTrue = true;
         }     
         else
-            for(int k = 0; k < settlements.size(); k++) 
-            {   if(settlements.get(k).xPos + width/2 > i - width/2 && settlements.get(k).xPos - width/2 < i + width/2
-                && settlements.get(k).yPos + height/2 > j - height/2 && settlements.get(k).yPos - height/2 < j + height/2)
+            for(int k = 0; k < roads.size(); k++) 
+            {   if(roads.get(k).xPos + obj.width/2 > i - obj.width/2 && roads.get(k).xPos - obj.width/2 < i + obj.width/2
+                && roads.get(k).yPos + obj.height/2 > j - obj.height/2 && roads.get(k).yPos - obj.height/2 < j + obj.height/2)
                 {returnTrue = false;}
                 else{
-                    obj.xPos = mouseXPos - width / 2;
-                    obj.yPos = mouseYPos - height / 2;  
+                    obj.xPos = mouseXPos - obj.width / 2;
+                    obj.yPos = mouseYPos - obj.height / 2;  
+                    
+                }
+            }
+        if(!returnTrue)
+            return false;
+        else
+            return true;
+    }
+    public static boolean checkEmptinessHorizontal(int i, int j, Roads obj, int mouseXPos, int mouseYPos){
+        boolean returnTrue = true;
+        if(roads.isEmpty())
+        {   obj.xPos = mouseXPos - obj.width / 2;
+            obj.yPos = mouseYPos - obj.height / 2;  
+            returnTrue = true;
+        }     
+        else
+            for(int k = 0; k < roads.size(); k++) 
+            {   if(roads.get(k).xPos + obj.width/2 > i - obj.width/2 && roads.get(k).xPos - obj.width/2 < i + obj.width/2
+                && roads.get(k).yPos + obj.height > j - obj.height && roads.get(k).yPos - obj.height < j + obj.height)
+                {returnTrue = false;}
+                else{
+                    obj.xPos = mouseXPos - obj.width / 2;
+                    obj.yPos = mouseYPos - obj.height / 2;  
                     
                 }
             }

@@ -15,7 +15,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
-    int phaseOfGame = 2;
+    int phaseOfGame = 0;
     private boolean showRoll = true;
     static public boolean sendingBoardFirst = true;
     static public boolean sendingBoardSecond = true;
@@ -110,7 +110,7 @@ public class BoardGameProject extends JFrame implements Runnable {
 
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
-        Roads.placeRoad(e);
+    //    Roads.placeRoad(e);
         repaint();
       }
     });
