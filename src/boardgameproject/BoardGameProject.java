@@ -15,7 +15,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
-    int phaseOfGame = 2;
+    int phaseOfGame = 0;
     private boolean showRoll = true;
     static public boolean sendingBoardFirst = true;
     static public boolean sendingBoardSecond = true;
@@ -110,7 +110,7 @@ public class BoardGameProject extends JFrame implements Runnable {
 
     addMouseMotionListener(new MouseMotionAdapter() {
       public void mouseDragged(MouseEvent e) {
-  //      Settlements.placeSettlements(e);  
+    //    Roads.placeRoad(e);
         repaint();
       }
     });
@@ -425,10 +425,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     }
 /////////////////////////////////////////////////////////////////////////
     static public void reset() {
-        for(int i = 0; i < 20; i++)
-        {    Tile tempTile = (Tile) Tile.getTiles().get(i);
-            tempTile.doRandomAssignment();
-            }
+        
         
         
     }
@@ -462,11 +459,7 @@ public class BoardGameProject extends JFrame implements Runnable {
         Tile tile19 = new Tile(Tile.tileType.Wood, g);
         Tile tile20 = new Tile(Tile.tileType.Gold, g);
         
-        
-        for(int i = 0; i < 20; i++)
-        {    Tile tempTile = (Tile) Tile.getTiles().get(i);
-            tempTile.doRandomAssignment();
-            }
+       
         if(isClient){
             sendingBoardFirst = false;
             sendingBoardSecond = false;
@@ -505,21 +498,28 @@ public class BoardGameProject extends JFrame implements Runnable {
                 phaseOfGame = 2;}
           
     }
-        if(ServerHandler.connected)
-            if(!isClient && sendingBoardFirst)
-            {    
-                    ServerHandler.sendBoard(Board.getHexBoard(), 1);
-                    sendingBoardFirst = false;
-            }
-            else if(!isClient && sendingBoardSecond)
-            {    
-                    ServerHandler.sendBoard(Board.getHexBoard(), 2);
-                    sendingBoardFirst = false;
-            }
-            else if(!isClient && sendingBoardThird)
-            {    
-                    ServerHandler.sendBoard(Board.getHexBoard(), 3);
-                    sendingBoardFirst = false;
+//        if(ServerHandler.connected)
+//            if(!isClient && sendingBoardFirst)
+//            {    
+//                    ServerHandler.sendBoard(Board.getHexBoard(), 1);
+//                    sendingBoardFirst = false;
+//            }
+//            else if(!isClient && sendingBoardSecond)
+//            {    
+//                    ServerHandler.sendBoard(Board.getHexBoard(), 2);
+//                    sendingBoardFirst = false;
+//            }
+//            else if(!isClient && sendingBoardThird)
+//            {    
+//                    ServerHandler.sendBoard(Board.getHexBoard(), 3);
+//                    sendingBoardFirst = false;
+//            }
+        if(ServerHandler.connected && !isClient)
+            for(int i = 0; i < 20; i++)
+            {   Tile tempTile = (Tile) Tile.getTiles().get(i);
+                tempTile.doRandomAssignment();
+                ServerHandler.sendTile(Board.getRow(tempTile), Board.getColumn(tempTile), Tile.conevertTileToInt(tempTile.thisTileType), tempTile.getValue());
+                ClientHandler.recievePieceMove();
             }
         
         

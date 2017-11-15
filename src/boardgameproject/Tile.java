@@ -14,7 +14,7 @@ public class Tile {
         Sheep, Wheat, Wood, Brick, Ore, Desert, Gold
     };
     private int value;
-    private tileType thisTileType;
+    tileType thisTileType;
     private Color thisColor;
     static private ArrayList<Tile> tiles = new ArrayList<Tile>();
     static private Graphics2D g;
@@ -41,6 +41,26 @@ public class Tile {
         Tile obj = this;
         tiles.add(obj);
     }
+    Tile(int tileValueType, int _value){
+        value = _value;
+        thisTileType = convertIntToTile(tileValueType);
+        if(thisTileType == tileType.Sheep)
+            thisColor = Color.WHITE;
+        else if(thisTileType == tileType.Wheat)
+            thisColor = Color.CYAN;
+        else if(thisTileType == tileType.Wood)
+            thisColor = Color.GREEN;
+        else if(thisTileType == tileType.Brick)
+            thisColor = Color.RED;
+        else if(thisTileType == tileType.Ore)
+            thisColor = Color.GRAY;
+        else if(thisTileType == tileType.Desert)
+        {    thisColor = Color.ORANGE;
+            robberOnTile = true;}
+        else
+            thisColor = Color.YELLOW;
+    }
+            
     public static ArrayList getTiles(){
         return tiles;
     }
@@ -102,5 +122,10 @@ public class Tile {
         else
            return tileType.Gold;
     }
+    public int getValue(){
+        return value;
+    }
+
+    
    
 }

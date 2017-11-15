@@ -65,47 +65,46 @@ public class ServerHandler
 		if (connected)
 		{
 //add or modify.                    
-			pw.println(str);
+			pw.println(str + ":" + -1 + ":"  + -1);
                         pw.flush(); 
                         BoardGameProject.myTurn = false;
 		}            
     }
-    public static void sendBoard(Tile[][] _board, int stage){
-        String boardString = null;
-        Tile tempBoard[][] = Board.getHexBoard();
-        if (connected){  
-            if(stage == 1){
-                for(int i = 0; i < 2; i++)
-                    for(int z = 0; (z < 5 && i == 0) || (z < 3 && i == 1); z++)
-                    {
-                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
-                    }   
-                pw.println(boardString);
-                
-            }
-            else if(stage == 2){
-                for(int i = 1; i < 4; i++)
-                    for(int z = 0; (z >= 3 && z < 5 && i == 1) || (z < 5 && i == 2 || (z < 1 && i == 3)); z++)
-                    {
-                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
-                    }   
-                pw.println(boardString);
-                
-            }
-            else{
-                for(int i = 3; i < 4; i++)
-                    for(int z = 0; (z > 0 && i == 3); z++)
-                    {
-                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
-                    }   
-                pw.println(boardString);
-            }
-            pw.println(boardString);
-
-        }
-        
-        
-        
+//    public static void sendBoard(Tile[][] _board, int stage){
+//        String boardString = null;
+//        Tile tempBoard[][] = Board.getHexBoard();
+//        if (connected){  
+//            if(stage == 1){
+//                for(int i = 0; i < 2; i++)
+//                    for(int z = 0; (z < 5 && i == 0) || (z < 3 && i == 1); z++)
+//                    {
+//                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
+//                    }   
+//                pw.println(boardString);
+//                
+//            }
+//            else if(stage == 2){
+//                for(int i = 1; i < 4; i++)
+//                    for(int z = 0; (z >= 3 && z < 5 && i == 1) || (z < 5 && i == 2 || (z < 1 && i == 3)); z++)
+//                    {
+//                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
+//                    }   
+//                pw.println(boardString);
+//                
+//            }
+//            else{
+//                for(int i = 3; i < 4; i++)
+//                    for(int z = 0; (z > 0 && i == 3); z++)
+//                    {
+//                        boardString += "" + tempBoard[i][z].conevertTileToInt(tempBoard[i][z].getTileType()) + ":";
+//                    }   
+//                pw.println(boardString);
+//            }
+//
+//        } 
+//    }
+    public static void sendTile(int row, int column, int tileType, int value){
+        pw.println("" + row + ":" + column + ":" + tileType + ":" + value + ":" + -2);
     }
     public static void sendDisconnect()
     {
@@ -137,13 +136,12 @@ public class ServerHandler
                             }
                             // row:col:initrow:initcol
 //add or modify.                            
-                            int post0 = Integer.parseInt(inputLine.split(":")[0]);
-                            int post1 = Integer.parseInt(inputLine.split(":")[1]);
-                            Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
-                            Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
-                            BoardGameProject.clientValue = Integer.parseInt(inputLine.split(":")[2]);
-                            
-                            BoardGameProject.myTurn = true;
+                            if(Integer.parseInt(inputLine.split(":")[4]) == -1){
+                                Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
+                                Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
+                                BoardGameProject.clientValue = Integer.parseInt(inputLine.split(":")[2]);
+                                BoardGameProject.myTurn = true;
+                            }
                         }
                         catch (NumberFormatException e)
                         {

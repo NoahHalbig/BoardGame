@@ -70,7 +70,7 @@ public class ClientHandler
 		if (connected)
 		{
 //add or modify.       /
-                        out.println(masonForehead);
+                        out.println(masonForehead + ":" + -1 + ":" + -1);
                         out.flush(); 
                         BoardGameProject.myTurn = false;
 		}        
@@ -109,47 +109,45 @@ public class ClientHandler
 //add or modify.
 							// row:col:initrow:initcol
                                                         
-                                                        if(BoardGameProject.receivingBoardFirst){
-                                                            boardArray[0] = Integer.parseInt(inputLine.split(":")[0]);
-                                                            boardArray[1] = Integer.parseInt(inputLine.split(":")[1]);
-                                                            boardArray[2] = Integer.parseInt(inputLine.split(":")[2]);
-                                                            boardArray[3] = Integer.parseInt(inputLine.split(":")[03]);
-                                                            boardArray[4] = Integer.parseInt(inputLine.split(":")[04]);
-                                                            boardArray[5] = Integer.parseInt(inputLine.split(":")[05]);
-                                                            boardArray[6] = Integer.parseInt(inputLine.split(":")[06]);
-                                                            boardArray[7] = Integer.parseInt(inputLine.split(":")[07]); 
-                                                            BoardGameProject.receivingBoardFirst = false;
-                                                            
-                                                        }
-                                                        else if(BoardGameProject.receivingBoardSecond){
-                                                            boardArray[8] = Integer.parseInt(inputLine.split(":")[0]);
-                                                            boardArray[9] = Integer.parseInt(inputLine.split(":")[1]);
-                                                            boardArray[10] = Integer.parseInt(inputLine.split(":")[2]);
-                                                            boardArray[11] = Integer.parseInt(inputLine.split(":")[03]);
-                                                            boardArray[12] = Integer.parseInt(inputLine.split(":")[04]);
-                                                            boardArray[13] = Integer.parseInt(inputLine.split(":")[05]);
-                                                            boardArray[14] = Integer.parseInt(inputLine.split(":")[06]);
-                                                            boardArray[15] = Integer.parseInt(inputLine.split(":")[07]); 
-                                                            BoardGameProject.receivingBoardSecond = false;
-                                                        }
-                                                        else if(BoardGameProject.receivingBoardThird){
-                                                            boardArray[16] = Integer.parseInt(inputLine.split(":")[0]);
-                                                            boardArray[17] = Integer.parseInt(inputLine.split(":")[1]);
-                                                            boardArray[18] = Integer.parseInt(inputLine.split(":")[2]);
-                                                            boardArray[19] = Integer.parseInt(inputLine.split(":")[03]);
-                                                        }
-                                                        else{
-                                                            //do board making in this thing here
-//                                                            for(int i = 0; i < boardArray.length; i ++)
-//                                                                Board.setHexBoard(boardArray[i], i);
+//                                                        if(BoardGameProject.receivingBoardFirst){
+//                                                            boardArray[0] = Integer.parseInt(inputLine.split(":")[0]);
+//                                                            boardArray[1] = Integer.parseInt(inputLine.split(":")[1]);
+//                                                            boardArray[2] = Integer.parseInt(inputLine.split(":")[2]);
+//                                                            boardArray[3] = Integer.parseInt(inputLine.split(":")[03]);
+//                                                            boardArray[4] = Integer.parseInt(inputLine.split(":")[04]);
+//                                                            boardArray[5] = Integer.parseInt(inputLine.split(":")[05]);
+//                                                            boardArray[6] = Integer.parseInt(inputLine.split(":")[06]);
+//                                                            boardArray[7] = Integer.parseInt(inputLine.split(":")[07]); 
+//                                                            BoardGameProject.receivingBoardFirst = false;
+//                                                            
+//                                                        }
+//                                                        else if(BoardGameProject.receivingBoardSecond){
+//                                                            boardArray[8] = Integer.parseInt(inputLine.split(":")[0]);
+//                                                            boardArray[9] = Integer.parseInt(inputLine.split(":")[1]);
+//                                                            boardArray[10] = Integer.parseInt(inputLine.split(":")[2]);
+//                                                            boardArray[11] = Integer.parseInt(inputLine.split(":")[03]);
+//                                                            boardArray[12] = Integer.parseInt(inputLine.split(":")[04]);
+//                                                            boardArray[13] = Integer.parseInt(inputLine.split(":")[05]);
+//                                                            boardArray[14] = Integer.parseInt(inputLine.split(":")[06]);
+//                                                            boardArray[15] = Integer.parseInt(inputLine.split(":")[07]); 
+//                                                            BoardGameProject.receivingBoardSecond = false;
+//                                                        }
+//                                                        else if(BoardGameProject.receivingBoardThird){
+//                                                            boardArray[16] = Integer.parseInt(inputLine.split(":")[0]);
+//                                                            boardArray[17] = Integer.parseInt(inputLine.split(":")[1]);
+//                                                            boardArray[18] = Integer.parseInt(inputLine.split(":")[2]);
+//                                                            boardArray[19] = Integer.parseInt(inputLine.split(":")[03]);
+//                                                        }
+                                                        if(Integer.parseInt(inputLine.split(":")[4]) == -1){
+                                                            Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
+                                                            Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
+                                                            BoardGameProject.serverValue = Integer.parseInt(inputLine.split(":")[2]);         
+                                                            BoardGameProject.myTurn = true;
+                                                        }else if(Integer.parseInt(inputLine.split(":")[4]) == -2){
+                                                            Board.setHexBoard(Integer.parseInt(inputLine.split(":")[0]), Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2]), Integer.parseInt(inputLine.split(":")[3]));
                                                         }
                                                         
-							int post0 = Integer.parseInt(inputLine.split(":")[0]);
-							int post1 = Integer.parseInt(inputLine.split(":")[1]);
-                                                        Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
-                                                        Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
-                                                        BoardGameProject.serverValue = Integer.parseInt(inputLine.split(":")[2]);
-                                                        BoardGameProject.myTurn = true;
+                                                        
 						}
 						catch (NumberFormatException e)
 						{

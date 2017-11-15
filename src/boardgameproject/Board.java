@@ -62,10 +62,28 @@ public class Board {
                 keepLooping = false;}
         }
     }
+    public static int getRow(Tile getThisThing){
+        for(int i = 0; i < 4; i ++)
+            for(int j = 0; j < 5; j++)
+                if(hexBoard[i][j]==getThisThing)
+                    return i;
+        return -1;
+    }
+    public static int getColumn(Tile getThisThing){
+        for(int i = 0; i < 4; i ++)
+            for(int j = 0; j < 5; j++)
+                if(hexBoard[i][j]==getThisThing)
+                    return j;
+        return -1;
+    }
+    
+    
     public static Tile[][] getHexBoard(){
         return hexBoard;
     }
-    
+    public static void setHexBoard(int row, int column, int tileType, int value){
+        hexBoard[row][column] = new Tile(tileType, value);
+    }
     
     
     
