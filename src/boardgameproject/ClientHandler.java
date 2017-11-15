@@ -140,7 +140,7 @@ public class ClientHandler
                                                         }
                                                         else{
                                                             //do board making in this thing here
-                                                            for(int i = 0; i < boardArray.length; i ++)
+//                                                            for(int i = 0; i < boardArray.length; i ++)
 //                                                                Board.setHexBoard(boardArray[i], i);
                                                         }
                                                         
