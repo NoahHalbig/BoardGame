@@ -15,6 +15,9 @@ public class Settlements extends Building{
     private static int width = 60;
     private static int height = 40; 
     static int pointValue = 1;
+    PlayerThings player1 = new PlayerThings();
+    PlayerThings player2 = new PlayerThings();
+    //one brick, one log
     
     protected static ArrayList<Corner> corners = new ArrayList<Corner>();  
     protected static ArrayList<Settlements> settlements = new ArrayList<Settlements>();  
@@ -28,11 +31,14 @@ public class Settlements extends Building{
     } 
     public void drawSettlements(Graphics2D g)
     {
-        g.setColor(Color.MAGENTA);
+        if(player1.player1Turn)  
+            g.setColor(Color.MAGENTA);
+        else if(!player1.player1Turn)
+            g.setColor(Color.DARK_GRAY);
         g.fillRect(xPos, yPos, width, height);    
     }
     public static void placeSettlements(MouseEvent e){
-        Settlements obj = new Settlements();
+        Settlements obj = new Settlements(); 
         
         int mouseXPos = e.getX();
         int mouseYPos = e.getY();
@@ -46,6 +52,8 @@ public class Settlements extends Building{
                 }
             }           
         }
+        
+        
     }
     public static boolean checkEmptiness(int i, int j, Settlements obj, int mouseXPos, int mouseYPos){
         boolean returnTrue = true;

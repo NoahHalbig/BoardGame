@@ -15,7 +15,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
-    int phaseOfGame = 0;
+    int phaseOfGame = 2;
     private boolean showRoll = true;
     static public boolean sendingBoardFirst = true;
     static public boolean sendingBoardSecond = true;
@@ -24,6 +24,8 @@ public class BoardGameProject extends JFrame implements Runnable {
     static public boolean receivingBoardSecond = true;
     static public boolean receivingBoardThird = true;
     
+    PlayerThings player1 = new PlayerThings();
+    PlayerThings player2 = new PlayerThings();
     
     final int portNumber = 5657;
     public static boolean gameStarted = false;
@@ -77,20 +79,32 @@ public class BoardGameProject extends JFrame implements Runnable {
                                 clientString = Dice.getRandomNum();
                                 ClientHandler.sendPieceMove(clientString);
                                 clientDiceRoll = Dice.getNumTotal();
+                                phaseOfGame = 2;
                             }
                             else if(myTurn){
                                 serverString = Dice.getRandomNum(); 
                                 ServerHandler.sendPieceMove(serverString);
-                                serverDiceRoll = Dice.getNumTotal();               
+                                serverDiceRoll = Dice.getNumTotal(); 
+                                phaseOfGame = 2;
                             }
                         }
                     }
                     if(phaseOfGame == 2)
                     {
-                           
-                            Settlements.placeSettlements(e);
-                        
-               
+                        int numTimes = 0;
+                        if(numTimes < 4)
+                        {
+                            System.out.println(numTimes);
+                            Settlements.placeSettlements(e); 
+                            player1.player1Turn = !player1.player1Turn;
+                            numTimes++;
+                        }    
+                        if(player1.getNumBrick() >= 1 && player1.getNumWood() >= 1 && player1.getNumWheat() >= 1 && player1.getNumSheep() >= 1 
+                        || player2.getNumBrick() >= 1 && player2.getNumWood() >= 1 && player2.getNumWheat() >= 1 && player2.getNumSheep() >= 1)
+                        {    
+                            Settlements.placeSettlements(e); 
+                            player1.player1Turn = !player1.player1Turn;
+                        }
                     }    
                     
                 }
@@ -101,7 +115,10 @@ public class BoardGameProject extends JFrame implements Runnable {
                 
                 if (e.BUTTON3 == e.getButton()) {
                     if(phaseOfGame == 2)
-                        Roads.placeRoad(e);
+                    {
+                        if(player1.getNumBrick() >= 1 && player1.getNumWood() >= 1 || player2.getNumBrick() >= 1 && player2.getNumWood() >= 1)
+                            Roads.placeRoad(e);
+                    }    
                 }
                 repaint();
             }
@@ -401,6 +418,47 @@ public class BoardGameProject extends JFrame implements Runnable {
             Roads.drawAllRoads(g);
             Cities.drawAllCities(g);
             Settlements.Draw(g);
+            ResourceCards.drawCard(g, this);
+              if(clientDiceRoll > 0){
+                g.setColor(Color.WHITE);
+                g.fillRect(0, Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
+                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+                g.setColor(Color.BLACK);
+                g.drawString("" + clientDiceRoll, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
+                g.drawString("Client's Dice Roll", 0, Window.getY(0) - Window.YBORDER*3/4);
+                
+            }
+            else if(clientValue > 0){
+                g.setColor(Color.WHITE);
+                g.fillRect(0, Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
+                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+                g.setColor(Color.BLACK);
+                g.drawString("" + clientValue, Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
+                g.drawString("Client's Dice Roll", 0, Window.getY(0) - Window.YBORDER*3/4);
+                
+            }
+            if(serverDiceRoll > 0){
+                g.setColor(Color.WHITE);
+                g.fillRect(Window.getX(Window.getWidth2()), Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
+                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+                g.setColor(Color.BLACK);
+                g.drawString("" + serverDiceRoll, Window.getX(Window.getWidth2()) + Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
+                g.drawString("Server's Dice Roll", Window.getX(Window.getWidth2()), Window.getY(0) - Window.YBORDER*3/4);
+                
+            }
+            else if(serverValue > 0){
+                g.setColor(Color.WHITE);
+                g.fillRect(Window.getX(Window.getWidth2()), Window.getY(-Window.YBORDER),Window.XBORDER, Window.YBORDER);
+                g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 20));
+                g.setColor(Color.BLACK);
+                g.drawString("" + serverValue, Window.getX(Window.getWidth2()) + Window.XBORDER/2, Window.getY(0) - Window.YBORDER/2);
+                 g.setFont(new Font("Comic Sans", Font.ROMAN_BASELINE, 16));
+                g.drawString("Server's Dice Roll", Window.getX(Window.getWidth2()), Window.getY(0) - Window.YBORDER*3/4);
+                
+            }
         }
             
         
