@@ -32,6 +32,8 @@ public class BoardGameProject extends JFrame implements Runnable {
     
     public static int playerTurnOrder = 1;
     
+    public static boolean checkTile = false;
+    
     
     boolean changeToPhase3 = true;
     
@@ -116,7 +118,20 @@ public class BoardGameProject extends JFrame implements Runnable {
 //                            Settlements.placeSettlements(e); 
 //                            player1.player1Turn = !player1.player1Turn;
 //                        }
-                    }    
+                    }
+                    else if(phaseOfGame == 3)
+                        if(isClient){
+                            clientString = Dice.getRandomNum();
+                            ClientHandler.sendDiceMove(clientString);
+                            clientDiceRoll = Dice.getNumTotal();
+                            Tile.checkTileType();
+                        }
+                        else{
+                            serverString = Dice.getRandomNum(); 
+                            ServerHandler.sendDiceMove(serverString);
+                            serverDiceRoll = Dice.getNumTotal(); 
+                            Tile.checkTileType();
+                        }
                     
                 }
                 if (e.BUTTON2 == e.getButton()) {
@@ -599,9 +614,10 @@ public class BoardGameProject extends JFrame implements Runnable {
             changeToPhase3 = false;
         }
         
-        if(phaseOfGame == 3)
+        if(phaseOfGame == 3 && checkTile)
         {
             Tile.checkTileType();
+            checkTile = false;
         }    
         
         

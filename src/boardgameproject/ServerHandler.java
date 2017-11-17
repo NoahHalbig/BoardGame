@@ -118,6 +118,10 @@ public class ServerHandler
             pw.println("esc");
         }
     }
+    public static void sendDiceMove(String str){
+        pw.println(str + ":" + -1 + ":"  + -4);
+        pw.flush(); 
+    }
 
     public static void recievePieceMove()
     {
@@ -158,6 +162,12 @@ public class ServerHandler
 				else if(Integer.parseInt(inputLine.split(":")[0]) == 3){
 				    Cities.cities.add(new Cities(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2])));
 				}
+                            else if(Integer.parseInt(inputLine.split(":")[4]) == -4){
+                                    Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
+                                    Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
+                                    BoardGameProject.clientValue = Integer.parseInt(inputLine.split(":")[2]); 
+                                    BoardGameProject.checkTile = true;
+                            }
                         }
                         catch (NumberFormatException e)
                         {

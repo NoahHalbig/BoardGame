@@ -87,7 +87,10 @@ public class ClientHandler
             out.println(buildingType + ":" + xpos + ":" + ypos + ":" + -1 + ":" + -3);
             out.flush();  
         }
-        
+        public static void sendDiceMove(String str){
+            out.println(str + ":" + -1 + ":"  + -4);
+            out.flush(); 
+        }
 
 
 	public static void recievePieceMove()
@@ -160,7 +163,12 @@ public class ClientHandler
 							    }
 						   	    else if(Integer.parseInt(inputLine.split(":")[0]) == 3)
 								Cities.cities.add(new Cities(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2])));
-							}
+							}else if(Integer.parseInt(inputLine.split(":")[4]) == -4){
+                                                            Dice.setNum1(Integer.parseInt(inputLine.split(":")[0]));
+                                                            Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
+                                                            BoardGameProject.serverValue = Integer.parseInt(inputLine.split(":")[2]); 
+                                                            BoardGameProject.checkTile = true;
+                                                        }
                                                         
                                                         
 						}
