@@ -594,12 +594,10 @@ public class BoardGameProject extends JFrame implements Runnable {
         else if (me.order == 2)
             me.playerColor = Color.DARK_GRAY;
         
-        if(playerTurnOrder > 4 && changeToPhase3){
+        if(extraForPhaseGame2 >= 3 && changeToPhase3){
             phaseOfGame = 3;
             changeToPhase3 = false;
         }
-        if(!isClient)
-            System.out.println(phaseOfGame);
         
         
         
