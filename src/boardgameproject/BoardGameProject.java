@@ -96,7 +96,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                             }
                         }
                     }
-                    if(phaseOfGame == 2 && me.order == playerTurnOrder && extraForPhaseGame2 == 0)
+                    else if(phaseOfGame == 2 && me.order == playerTurnOrder && extraForPhaseGame2 == 0)
                     {
                         Settlements.placeSettlements(e); 
                         extraForPhaseGame2 = 1;
