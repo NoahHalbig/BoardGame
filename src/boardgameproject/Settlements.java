@@ -14,8 +14,6 @@ public class Settlements extends Building{
     private static int width = 60;
     private static int height = 40; 
     static int pointValue = 1;
-    PlayerThings player1 = new PlayerThings();
-    PlayerThings player2 = new PlayerThings();
     //one brick, one log
     
     protected static ArrayList<Corner> corners = new ArrayList<Corner>();  
@@ -25,12 +23,12 @@ public class Settlements extends Building{
     
     public static void Draw(Graphics2D g) {
         for (int i=0;i<settlements.size();i++) {
-            for (int o=0;0<BoardGameProject.me.ownedSettlements.size();o++)
-                if (settlements.get(i) == BoardGameProject.me.ownedSettlements.get(o))
-                    g.setColor(BoardGameProject.me.playerColor);
-                else if(BoardGameProject.me.playerColor == Color.MAGENTA)
-                    g.setColor(Color.DARK_GRAY);
-                else
+//            for (int o=0;0<BoardGameProject.me.ownedSettlements.size();o++)
+//                if (settlements.get(i) == BoardGameProject.me.ownedSettlements.get(o))
+//                    g.setColor(BoardGameProject.me.playerColor);
+//                else if(BoardGameProject.me.playerColor == Color.MAGENTA)
+//                    g.setColor(Color.DARK_GRAY);
+//                else
                     g.setColor(Color.MAGENTA);
                 settlements.get(i).drawSettlements(g);
         }        

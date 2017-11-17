@@ -27,13 +27,17 @@ public class Roads extends Building{
             roads.get(i).drawRoads(g);
         }    
     }
+    Roads(int _xpos, int _ypos){
+        xPos = _xpos;
+        yPos = _ypos;
+    }
     public void drawRoads(Graphics2D g)
     {
         g.setColor(Color.MAGENTA);
         g.fillRect(xPos, yPos, width, height);    
     }
     public static void placeRoad(MouseEvent e){
-        Roads obj = new Roads();
+        Roads obj = new Roads(0, 0);
         
         int mouseXPos = e.getX();
         int mouseYPos = e.getY();

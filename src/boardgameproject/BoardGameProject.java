@@ -35,6 +35,8 @@ public class BoardGameProject extends JFrame implements Runnable {
     PlayerThings player1 = new PlayerThings();
     PlayerThings player2 = new PlayerThings();
     
+    boolean changeToPhase3 = true;
+    
     final int portNumber = 5657;
     public static boolean gameStarted = false;
     public static boolean myTurn;
@@ -109,7 +111,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                     
                 }
                 if (e.BUTTON2 == e.getButton()) {
-                    if(phaseOfGame == 2){
+                    if(phaseOfGame == 4){
                         Cities.placeCities(e);
                         
                         
@@ -583,6 +585,10 @@ public class BoardGameProject extends JFrame implements Runnable {
         else if (me.order == 2)
             me.playerColor = Color.DARK_GRAY;
         
+        if(playerTurnOrder > 4 && changeToPhase3){
+            phaseOfGame = 3;
+            changeToPhase3 = false;
+        }
         
         
         

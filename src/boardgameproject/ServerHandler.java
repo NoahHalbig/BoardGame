@@ -156,7 +156,7 @@ public class ServerHandler
                                         BoardGameProject.playerTurnOrder += 1;
 				}	
 				else if(Integer.parseInt(inputLine.split(":")[0]) == 3){
-				    Cities.cities.add(new Cities(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2]));
+				    Cities.cities.add(new Cities(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2])));
 				}
                         }
                         catch (NumberFormatException e)

@@ -26,6 +26,10 @@ public class Cities extends Building{
             cities.get(i).drawCities(g);
         }    
     }
+    Cities(int _xpos, int _ypos){
+        xPos = _xpos;
+        yPos = _ypos;
+    }
     public void drawCities(Graphics2D g)
     {
         g.setColor(Color.DARK_GRAY);
@@ -34,7 +38,7 @@ public class Cities extends Building{
     }
 
 public static void placeCities(MouseEvent e){
-        Cities obj = new Cities();
+        Cities obj = new Cities(0, 0);
         
         int mouseXPos = e.getX();
         int mouseYPos = e.getY();
