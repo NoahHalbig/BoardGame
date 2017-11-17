@@ -93,6 +93,17 @@ public class BoardGameProject extends JFrame implements Runnable {
                                 ServerHandler.sendPieceMove(serverString);
                                 serverDiceRoll = Dice.getNumTotal(); 
                                 extraForPhaseGame1 = 1;
+                                if(phaseOfGame == 1 && extraForPhaseGame1 == 1)
+                                    if(serverDiceRoll < clientValue ){
+                                        me.order = 2;
+                                        phaseOfGame = 2;}
+                                    else if(serverDiceRoll == clientValue){
+                                        me.order = 2;
+                                        phaseOfGame = 2;}
+                                    else{
+                                        me.order = 1;
+                                        phaseOfGame = 2;}
+                                
                             }
                         }
                     }
