@@ -153,7 +153,14 @@ public class ClientHandler
                                                         }else if(Integer.parseInt(inputLine.split(":")[4]) == -3){
                                                             if(Integer.parseInt(inputLine.split(":")[0]) == 1)
                                                                 Settlements.settlements.add(new Settlements(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2])));
-                                                        }
+                                                            else if(Integer.parseInt(inputLine.split(":")[0]) == 2){
+								    Roads.roads.add(new Roads(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2])));
+							            if(BoardGameProject.phaseOfGame == 2)
+							            	BoardGameProject.playerTurnOrder += 1;
+							    }
+						   	    else if(Integer.parseInt(inputLine.split(":")[0]) == 3)
+								    Cities.cities.add(new Cities(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2]));
+							}
                                                         
                                                         
 						}
