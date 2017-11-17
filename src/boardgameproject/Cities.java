@@ -47,8 +47,16 @@ public static void placeCities(MouseEvent e){
             for(int j = Window.getY(0); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
             {   
                 if(mouseXPos > i - width/2 && mouseXPos < i + width/2 && mouseYPos > j - height/2 && mouseYPos < j + height/2){
-                    if(checkEmptiness(i, j, obj, mouseXPos, mouseYPos))
+                    if(checkEmptiness(i, j, obj, mouseXPos, mouseYPos)){
                         cities.add(obj);  
+                        Player.addCity(obj);
+                        if(BoardGameProject.isClient)
+                            ClientHandler.sendBuilding(3, obj.xPos, obj.yPos);
+                        else
+                            ServerHandler.sendBuilding(3, obj.xPos, obj.yPos);
+                    
+                    
+                    }
                 }
             }           
         }

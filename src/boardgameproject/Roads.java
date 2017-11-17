@@ -48,8 +48,16 @@ public class Roads extends Building{
                 if(mouseXPos > i - obj.width/2 && mouseXPos < i + obj.width/2 && mouseYPos > j - obj.height/5 && mouseYPos < j + obj.height/5){
                     obj.width = 20;
                     obj.height = 80;
-                    if(checkEmptinessVertical(i, j, obj, mouseXPos, mouseYPos))
+                    if(checkEmptinessVertical(i, j, obj, mouseXPos, mouseYPos)){
                         roads.add(obj);  
+                        Player.addRoad(obj);
+                        if(BoardGameProject.isClient)
+                            ClientHandler.sendBuilding(2, obj.xPos, obj.yPos);
+                        else
+                            ServerHandler.sendBuilding(2, obj.xPos, obj.yPos);
+                    
+                    
+                    }
                 }
             }           
         }
@@ -60,8 +68,16 @@ public class Roads extends Building{
                 if(mouseXPos > i - obj.width/5 && mouseXPos < i + obj.width/5 && mouseYPos > j - obj.height/2 && mouseYPos < j + obj.height/2){
                     obj.width = 80;
                     obj.height = 20;
-                    if(checkEmptinessHorizontal(i, j, obj, mouseXPos, mouseYPos))
+                    if(checkEmptinessVertical(i, j, obj, mouseXPos, mouseYPos)){
                         roads.add(obj);  
+                        Player.addRoad(obj);
+                        if(BoardGameProject.isClient)
+                            ClientHandler.sendBuilding(2, obj.xPos, obj.yPos);
+                        else
+                            ServerHandler.sendBuilding(2, obj.xPos, obj.yPos);
+                    
+                    
+                    }
                 }
             }           
         }

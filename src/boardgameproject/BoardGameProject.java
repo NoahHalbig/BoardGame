@@ -32,8 +32,6 @@ public class BoardGameProject extends JFrame implements Runnable {
     
     public static int playerTurnOrder = 1;
     
-    PlayerThings player1 = new PlayerThings();
-    PlayerThings player2 = new PlayerThings();
     
     boolean changeToPhase3 = true;
     
@@ -589,6 +587,8 @@ public class BoardGameProject extends JFrame implements Runnable {
             phaseOfGame = 3;
             changeToPhase3 = false;
         }
+        if(!isClient)
+            System.out.println(phaseOfGame);
         
         
         
