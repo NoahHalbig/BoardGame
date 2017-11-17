@@ -70,6 +70,11 @@ public class ServerHandler
                         BoardGameProject.myTurn = false;
 		}            
     }
+    public static void sendBuilding(int buildingType, int xpos, int ypos){
+            pw.println(buildingType + ":" + xpos + ":" + ypos + ":" + -1 + ":" + -3);
+            pw.flush();  
+    }
+    
 //    public static void sendBoard(Tile[][] _board, int stage){
 //        String boardString = null;
 //        Tile tempBoard[][] = Board.getHexBoard();
@@ -141,6 +146,10 @@ public class ServerHandler
                                 Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
                                 BoardGameProject.clientValue = Integer.parseInt(inputLine.split(":")[2]);
                                 BoardGameProject.myTurn = true;
+                            }
+                            else if(Integer.parseInt(inputLine.split(":")[4]) == -3){
+                                if(Integer.parseInt(inputLine.split(":")[0]) == 1)
+                                    Settlements.settlements.add(new Settlements(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2])));
                             }
                         }
                         catch (NumberFormatException e)

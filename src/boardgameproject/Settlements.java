@@ -1,6 +1,5 @@
 package boardgameproject;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.io.*;
@@ -26,19 +25,28 @@ public class Settlements extends Building{
     
     public static void Draw(Graphics2D g) {
         for (int i=0;i<settlements.size();i++) {
-            settlements.get(i).drawSettlements(g);
+            for (int o=0;0<BoardGameProject.me.ownedSettlements.size();o++)
+                if (settlements.get(i) == BoardGameProject.me.ownedSettlements.get(o))
+                    g.setColor(BoardGameProject.me.playerColor);
+                else if(BoardGameProject.me.playerColor == Color.MAGENTA)
+                    g.setColor(Color.DARK_GRAY);
+                else
+                    g.setColor(Color.MAGENTA);
+                settlements.get(i).drawSettlements(g);
         }        
     } 
+//    Settlements(){
+//    }
+    Settlements(int _xpos, int _ypos){
+        xPos = _xpos;
+        yPos = _ypos;
+    }
     public void drawSettlements(Graphics2D g)
     {
-        if(player1.player1Turn)  
-            g.setColor(Color.MAGENTA);
-        else if(!player1.player1Turn)
-            g.setColor(Color.DARK_GRAY);
         g.fillRect(xPos, yPos, width, height);    
     }
     public static void placeSettlements(MouseEvent e){
-        Settlements obj = new Settlements(); 
+        Settlements obj = new Settlements(0, 0); 
         
         int mouseXPos = e.getX();
         int mouseYPos = e.getY();
@@ -48,7 +56,14 @@ public class Settlements extends Building{
             {   
                 if(mouseXPos > i - width/3 && mouseXPos < i + width/3 && mouseYPos > j - height/3 && mouseYPos < j + height/3){
                     if(checkEmptiness(i, j, obj, mouseXPos, mouseYPos))
-                        settlements.add(obj);  
+                    {    settlements.add(obj);  
+                        Player.addSettlement(obj);
+                        if(BoardGameProject.isClient)
+                            ClientHandler.sendBuilding(1, obj.xPos, obj.yPos);
+                        else
+                            ServerHandler.sendBuilding(1, obj.xPos, obj.yPos);
+                    }
+                    
                 }
             }           
         }

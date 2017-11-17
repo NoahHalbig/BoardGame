@@ -83,6 +83,10 @@ public class ClientHandler
 			out.println("esc");
 		}
 	}
+        public static void sendBuilding(int buildingType, int xpos, int ypos){
+            out.println(buildingType + ":" + xpos + ":" + ypos + ":" + -1 + ":" + -3);
+            out.flush();  
+        }
         
 
 
@@ -143,8 +147,12 @@ public class ClientHandler
                                                             Dice.setNum2(Integer.parseInt(inputLine.split(":")[1]));
                                                             BoardGameProject.serverValue = Integer.parseInt(inputLine.split(":")[2]);         
                                                             BoardGameProject.myTurn = true;
+                                                            BoardGameProject.extraForPhaseGame1 = 1;
                                                         }else if(Integer.parseInt(inputLine.split(":")[4]) == -2){
                                                             Board.setHexBoard(Integer.parseInt(inputLine.split(":")[0]), Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2]), Integer.parseInt(inputLine.split(":")[3]));
+                                                        }else if(Integer.parseInt(inputLine.split(":")[4]) == -3){
+                                                            if(Integer.parseInt(inputLine.split(":")[0]) == 1)
+                                                                Settlements.settlements.add(new Settlements(Integer.parseInt(inputLine.split(":")[1]), Integer.parseInt(inputLine.split(":")[2])));
                                                         }
                                                         
                                                         

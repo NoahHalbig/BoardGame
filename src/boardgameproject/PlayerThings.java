@@ -4,10 +4,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 public class PlayerThings {
-    ArrayList<Building> ownedBuildings = new ArrayList<Building>();
+    protected ArrayList<Roads> ownedRoads = new ArrayList<Roads>();
+    protected ArrayList<Settlements> ownedSettlements = new ArrayList<Settlements>();
+    protected ArrayList<Cities> ownedCities = new ArrayList<Cities>();
     int[] resources = new int[BoardGameProject.NUM_RESOURCE_TYPES];
     int numPoints;
-    Color playerColor;
+    public Color playerColor;
     int order = 0;
     boolean player1Turn = true;
     ArrayList<Player> players = new ArrayList<Player>();

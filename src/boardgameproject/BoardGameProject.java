@@ -15,7 +15,13 @@ public class BoardGameProject extends JFrame implements Runnable {
     Image image;
     static Graphics2D g;
     static int NUM_RESOURCE_TYPES = 5;
-    int phaseOfGame = 2;
+    
+    
+    int phaseOfGame = 0;
+    int extraForPhaseGame2 = 0;
+    public static int extraForPhaseGame1 = 0;
+    
+    
     private boolean showRoll = true;
     static public boolean sendingBoardFirst = true;
     static public boolean sendingBoardSecond = true;
@@ -23,6 +29,8 @@ public class BoardGameProject extends JFrame implements Runnable {
     static public boolean receivingBoardFirst = true;
     static public boolean receivingBoardSecond = true;
     static public boolean receivingBoardThird = true;
+    
+    int playerTurnOrder = 1;
     
     PlayerThings player1 = new PlayerThings();
     PlayerThings player2 = new PlayerThings();
@@ -37,7 +45,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     public static String serverString = null;
     public static String clientString = null;
     
-    public static Player me = null;
+    public static Player me = new Player();
     
     
     
@@ -79,32 +87,24 @@ public class BoardGameProject extends JFrame implements Runnable {
                                 clientString = Dice.getRandomNum();
                                 ClientHandler.sendPieceMove(clientString);
                                 clientDiceRoll = Dice.getNumTotal();
-                                phaseOfGame = 2;
                             }
                             else if(myTurn){
                                 serverString = Dice.getRandomNum(); 
                                 ServerHandler.sendPieceMove(serverString);
                                 serverDiceRoll = Dice.getNumTotal(); 
-                                phaseOfGame = 2;
+                                extraForPhaseGame1 = 1;
                             }
                         }
                     }
-                    if(phaseOfGame == 2)
+                    if(phaseOfGame == 2 && me.order == playerTurnOrder && extraForPhaseGame2 == 0)
                     {
-                        int numTimes = 0;
-                        if(numTimes < 4)
-                        {
-                            System.out.println(numTimes);
-                            Settlements.placeSettlements(e); 
-                            player1.player1Turn = !player1.player1Turn;
-                            numTimes++;
-                        }    
-                        if(player1.getNumBrick() >= 1 && player1.getNumWood() >= 1 && player1.getNumWheat() >= 1 && player1.getNumSheep() >= 1 
-                        || player2.getNumBrick() >= 1 && player2.getNumWood() >= 1 && player2.getNumWheat() >= 1 && player2.getNumSheep() >= 1)
-                        {    
-                            Settlements.placeSettlements(e); 
-                            player1.player1Turn = !player1.player1Turn;
-                        }
+                        Settlements.placeSettlements(e); 
+                        extraForPhaseGame2 = 1;
+//                        if(me.getNumBrick() >= 1 && me.getNumWood() >= 1 && me.getNumWheat() >= 1 && me.getNumSheep() >= 1 )
+//                        {    
+//                            Settlements.placeSettlements(e); 
+//                            player1.player1Turn = !player1.player1Turn;
+//                        }
                     }    
                     
                 }
@@ -114,10 +114,12 @@ public class BoardGameProject extends JFrame implements Runnable {
                 }
                 
                 if (e.BUTTON3 == e.getButton()) {
-                    if(phaseOfGame == 2)
+                    if(phaseOfGame == 2 && me.order == playerTurnOrder && extraForPhaseGame2 == 1)
                     {
-                        if(player1.getNumBrick() >= 1 && player1.getNumWood() >= 1 || player2.getNumBrick() >= 1 && player2.getNumWood() >= 1)
+//                        if(player1.getNumBrick() >= 1 && player1.getNumWood() >= 1 || player2.getNumBrick() >= 1 && player2.getNumWood() >= 1)
                             Roads.placeRoad(e);
+                            playerTurnOrder += 1;
+                            me.order +=2;
                     }    
                 }
                 repaint();
@@ -516,44 +518,14 @@ public class BoardGameProject extends JFrame implements Runnable {
         Tile tile18 = new Tile(Tile.tileType.Ore, g);
         Tile tile19 = new Tile(Tile.tileType.Wood, g);
         Tile tile20 = new Tile(Tile.tileType.Gold, g);
-        
-       
-        if(isClient){
-            sendingBoardFirst = false;
-            sendingBoardSecond = false;
-            sendingBoardThird = false;
-        }
-        else{
-            receivingBoardFirst = false;
-            receivingBoardSecond = false;
-            receivingBoardThird = false;
-            
-        }
+ 
         
             
         
         reset();
 
         }
-        if(isClient && phaseOfGame == 1)
-            if(clientDiceRoll < serverValue){
-                me.order = 2;
-                phaseOfGame = 2;}
-            else if(clientDiceRoll == serverValue)
-            {   me.order = 1;
-                phaseOfGame = 2;}
-            else
-                me.order = 1;
-        else if(phaseOfGame == 1)
-            if(serverDiceRoll < clientValue ){
-                me.order = 2;
-                phaseOfGame = 2;}
-            else if(serverDiceRoll == clientValue){
-                me.order = 2;
-                phaseOfGame = 2;}
-            else{
-                me.order = 1;
-                phaseOfGame = 2;}
+        
           
     }
 //        if(ServerHandler.connected)
@@ -572,13 +544,40 @@ public class BoardGameProject extends JFrame implements Runnable {
 //                    ServerHandler.sendBoard(Board.getHexBoard(), 3);
 //                    sendingBoardFirst = false;
 //            }
-        if(ServerHandler.connected && !isClient)
+        if(ServerHandler.connected && !isClient && phaseOfGame == 1)
             for(int i = 0; i < 20; i++)
             {   Tile tempTile = (Tile) Tile.getTiles().get(i);
                 tempTile.doRandomAssignment();
                 ServerHandler.sendTile(Board.getRow(tempTile), Board.getColumn(tempTile), Tile.conevertTileToInt(tempTile.thisTileType), tempTile.getValue());
                 ClientHandler.recievePieceMove();
             }
+        
+        if(isClient && phaseOfGame == 1 && extraForPhaseGame1 == 1)
+            if(clientDiceRoll < serverValue){
+                me.order = 2;
+                phaseOfGame = 2;}
+            else if(clientDiceRoll == serverValue)
+            {   me.order = 1;
+                phaseOfGame = 2;}
+            else{
+                me.order = 1;
+                phaseOfGame = 2;
+            }
+        else if(phaseOfGame == 1 && extraForPhaseGame1 == 1)
+            if(serverDiceRoll < clientValue ){
+                me.order = 2;
+                phaseOfGame = 2;}
+            else if(serverDiceRoll == clientValue){
+                me.order = 2;
+                phaseOfGame = 2;}
+            else{
+                me.order = 1;
+                phaseOfGame = 2;}
+        if(me.order == 1)
+            me.playerColor = Color.MAGENTA;
+        else if (me.order == 2)
+            me.playerColor = Color.DARK_GRAY;
+        
         
         
         
