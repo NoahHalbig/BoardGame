@@ -96,10 +96,10 @@ public class BoardGameProject extends JFrame implements Runnable {
                             }
                         }
                     }
-                    else if(phaseOfGame == 2 && me.order == playerTurnOrder && extraForPhaseGame2 == 0)
+                    else if(phaseOfGame == 2 && me.order == playerTurnOrder && (extraForPhaseGame2 == 0 || extraForPhaseGame2 == 2))
                     {
                         Settlements.placeSettlements(e); 
-                        extraForPhaseGame2 = 1;
+                        extraForPhaseGame2 =+ 1;
 //                        if(me.getNumBrick() >= 1 && me.getNumWood() >= 1 && me.getNumWheat() >= 1 && me.getNumSheep() >= 1 )
 //                        {    
 //                            Settlements.placeSettlements(e); 
@@ -109,17 +109,21 @@ public class BoardGameProject extends JFrame implements Runnable {
                     
                 }
                 if (e.BUTTON2 == e.getButton()) {
-                    if(phaseOfGame == 2)
+                    if(phaseOfGame == 2){
                         Cities.placeCities(e);
+                        
+                        
+                    }
                 }
                 
                 if (e.BUTTON3 == e.getButton()) {
-                    if(phaseOfGame == 2 && me.order == playerTurnOrder && extraForPhaseGame2 == 1)
+                    if(phaseOfGame == 2 && me.order == playerTurnOrder && (extraForPhaseGame2 == 1 || extraForPhaseGame2 == 3)
                     {
 //                        if(player1.getNumBrick() >= 1 && player1.getNumWood() >= 1 || player2.getNumBrick() >= 1 && player2.getNumWood() >= 1)
                             Roads.placeRoad(e);
                             playerTurnOrder += 1;
                             me.order +=2;
+                            extraForPhaseGame2 +=  1;
                     }    
                 }
                 repaint();
