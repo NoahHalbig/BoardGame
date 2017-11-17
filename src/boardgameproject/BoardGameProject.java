@@ -599,7 +599,10 @@ public class BoardGameProject extends JFrame implements Runnable {
             changeToPhase3 = false;
         }
         
-        
+        if(phaseOfGame == 3)
+        {
+            Tile.checkTileType();
+        }    
         
         
         

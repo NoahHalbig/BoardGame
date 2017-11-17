@@ -91,4 +91,31 @@ public class Settlements extends Building{
         else
             return true;
     }
+    //public tileType checkTileType()
+//    {
+//         for (int i=0;i<settlements.size();i++) {
+//            for (int o=0;0<BoardGameProject.me.ownedSettlements.size();o++)
+//            {
+//                if (settlements.get(i) == BoardGameProject.me.ownedSettlements.get(o))   
+//                {
+//                    if(settlements.get(i).xPos > i - width/2 && settlements.get(i).xPos < i + width/2
+//                    && settlements.get(i).yPos > i - height/2 && settlements.get(i).yPos < i + height/2)
+//                    {
+//                        for(int x = Window.getX(0); x <= Window.getX(Window.getWidth2()); x += Window.getWidth2() / Board.NUM_COLUMNS)
+//                        {  
+//                            for(int j = Window.getY(Window.getHeight2() / Board.NUM_ROWS/2); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
+//                            {   
+//                                if(settlements.get(i).xPos > x && settlements.get(i).xPos < x + Window.getWidth2() / Board.NUM_COLUMNS
+//                                && settlements.get(i).yPos > j && settlements.get(i).yPos < j + Window.getHeight2() / Board.NUM_ROWS)
+//                                {
+//                                    
+//                                }
+//                            }
+//                        }    
+//                    }    
+//                }    
+//            }   
+//        }           
+//    }
+
 }

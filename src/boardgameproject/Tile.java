@@ -17,6 +17,7 @@ public class Tile {
     tileType thisTileType;
     private Color thisColor;
     static private ArrayList<Tile> tiles = new ArrayList<Tile>();
+    static private ArrayList<Settlements> settlements = new ArrayList<Settlements>();
     static private Graphics2D g;
     boolean robberOnTile;
     
@@ -126,6 +127,94 @@ public class Tile {
         return value;
     }
 
-    
+    public static tileType checkTileType()
+    {
+         
+        for (int i=0;i<settlements.size();i++) {
+            for (int o=0;0<BoardGameProject.me.ownedSettlements.size();o++)
+            {
+                if (settlements.get(i) == BoardGameProject.me.ownedSettlements.get(o))   
+                {
+
+                    for(int x = 0; x < tiles.size(); x++)
+                    {  
+                        for(int g = Window.getX(0); g <= Window.getX(Window.getWidth2()); g += Window.getWidth2() / Board.NUM_COLUMNS)
+                        {  
+                            for(int j = Window.getY(Window.getHeight2() / Board.NUM_ROWS/2); j <= Window.getY(Window.getHeight2()); j += Window.getHeight2() / Board.NUM_ROWS)
+                            {
+
+                            if(settlements.get(i).xPos + Window.getWidth2()/Board.NUM_COLUMNS > g && settlements.get(i).xPos + Window.getWidth2()/Board.NUM_COLUMNS < g + Window.getWidth2() / Board.NUM_COLUMNS )
+                            {   
+                                if(Board.getHexBoard()[g][j].thisTileType == tileType.Brick)
+                                    PlayerThings.addBrick();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Gold)
+                                    PlayerThings.addGold();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Ore)
+                                    PlayerThings.addRock();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Sheep)
+                                    PlayerThings.addSheep();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wheat)
+                                    PlayerThings.addWheat();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wood)
+                                    PlayerThings.addWood();
+                                return(Board.getHexBoard()[g][j].thisTileType);
+                            }
+                            if(settlements.get(i).xPos + Window.getWidth2()/Board.NUM_COLUMNS > g + Window.getWidth2() / Board.NUM_COLUMNS && settlements.get(i).xPos + Window.getWidth2()/Board.NUM_COLUMNS < g + 2*(Window.getWidth2() / Board.NUM_COLUMNS) )
+                            { 
+                                if(Board.getHexBoard()[g][j].thisTileType == tileType.Brick)
+                                    PlayerThings.addBrick();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Gold)
+                                    PlayerThings.addGold();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Ore)
+                                    PlayerThings.addRock();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Sheep)
+                                    PlayerThings.addSheep();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wheat)
+                                    PlayerThings.addWheat();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wood)
+                                    PlayerThings.addWood();
+                                return(Board.getHexBoard()[g][j].thisTileType);
+                            }
+                            if(settlements.get(i).yPos + Window.getWidth2()/Board.NUM_ROWS > j && settlements.get(i).yPos + Window.getHeight2()/Board.NUM_COLUMNS < j +  Window.getHeight2() / Board.NUM_ROWS )
+                            {
+                                if(Board.getHexBoard()[g][j].thisTileType == tileType.Brick)
+                                    PlayerThings.addBrick();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Gold)
+                                    PlayerThings.addGold();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Ore)
+                                    PlayerThings.addRock();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Sheep)
+                                    PlayerThings.addSheep();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wheat)
+                                    PlayerThings.addWheat();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wood)
+                                    PlayerThings.addWood();
+                                return(Board.getHexBoard()[g][j].thisTileType);
+                            }
+                            if(settlements.get(i).yPos + Window.getWidth2()/Board.NUM_ROWS > j + Window.getWidth2() / Board.NUM_ROWS && settlements.get(i).yPos +  Window.getHeight2()/Board.NUM_ROWS < j + 2*( Window.getHeight2() / Board.NUM_ROWS) )
+                            {  
+                                if(Board.getHexBoard()[g][j].thisTileType == tileType.Brick)
+                                    PlayerThings.addBrick();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Gold)
+                                    PlayerThings.addGold();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Ore)
+                                    PlayerThings.addRock();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Sheep)
+                                    PlayerThings.addSheep();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wheat)
+                                    PlayerThings.addWheat();
+                                else if(Board.getHexBoard()[g][j].thisTileType == tileType.Wood)
+                                    PlayerThings.addWood();
+                                return(Board.getHexBoard()[g][j].thisTileType);
+                            }
+                            }
+                        }   
+                    }
+                }
+            }
+   
+        }   
+        return(tileType.Desert);
+    } 
    
 }
