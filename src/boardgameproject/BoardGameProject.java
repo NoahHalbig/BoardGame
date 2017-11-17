@@ -124,6 +124,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                             playerTurnOrder += 1;
                             me.order +=2;
                             extraForPhaseGame2 +=  1;
+                        
                     }    
                 }
                 repaint();
