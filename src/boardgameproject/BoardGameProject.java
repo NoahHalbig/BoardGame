@@ -17,8 +17,8 @@ public class BoardGameProject extends JFrame implements Runnable {
     static int NUM_RESOURCE_TYPES = 5;
     
     
-    int phaseOfGame = 0;
-    int extraForPhaseGame2 = 0;
+    public static int phaseOfGame = 0;
+    public static int extraForPhaseGame2 = 0;
     public static int extraForPhaseGame1 = 0;
     
     
@@ -30,7 +30,7 @@ public class BoardGameProject extends JFrame implements Runnable {
     static public boolean receivingBoardSecond = true;
     static public boolean receivingBoardThird = true;
     
-    int playerTurnOrder = 1;
+    public static int playerTurnOrder = 1;
     
     PlayerThings player1 = new PlayerThings();
     PlayerThings player2 = new PlayerThings();
@@ -117,7 +117,7 @@ public class BoardGameProject extends JFrame implements Runnable {
                 }
                 
                 if (e.BUTTON3 == e.getButton()) {
-                    if(phaseOfGame == 2 && me.order == playerTurnOrder && (extraForPhaseGame2 == 1 || extraForPhaseGame2 == 3)
+                    if(phaseOfGame == 2 && me.order == playerTurnOrder && (extraForPhaseGame2 == 1 || extraForPhaseGame2 == 3))
                     {
 //                        if(player1.getNumBrick() >= 1 && player1.getNumWood() >= 1 || player2.getNumBrick() >= 1 && player2.getNumWood() >= 1)
                             Roads.placeRoad(e);
